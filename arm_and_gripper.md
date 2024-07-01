@@ -11,7 +11,7 @@ Test which number corresponds to which joint, and which rotation direction is po
 The robot has two slots for packages on its back. Find the proper angle values for the pick-up arm configuration, so that Mirte Master can grasp the items off of its back in order to place them.
 
 ## Arm motions from python script
-To make the robot autonomous, the arm commands should come from code rather than from the command line. Let's try to make the simplest possible python script that can do this.   It is up to you to create a new python file. We suggest to call it `simple_arm_script.py` and to put it in `~/mirte_ws/src/mirte_workshop/scripts`.   
+To make the robot autonomous, the arm commands should come from code rather than from the command line. Let's try to make the simplest possible python script that can do this.   It is up to you to create a new python file. We suggest to call it `arm_simple_script.py` and to put it in `~/mirte_ws/src/mirte_workshop/scripts`.   
 
 Copy the following content in the file:  
 
@@ -58,17 +58,19 @@ Copy the following content in the file:
 
     # The end of the file is reached, so it stops
 
-Save the file, and test if it works with:
+Save the file, move to the script directory and test if it works with:
+`$ cd ~/mirte_ws/src/mirte_workshop/scripts`
 `$ python3 arm_simple_script.py`  
 
 Now, you could start editing this file to prepare an entire choreography for the arm! With while-loops you can make it run forever, until stopped with ctrl-c.
 
 ## Arm motions from service calls
-For easy integration with the rest of the robot software, you may want to create ROS services. This will create a small information detour; the service call will effectively publish the same message as what we published directly in the code above. But it is still instructive to check out how to create services.  
+For easy integration with the rest of the robot software, you may want to create ROS services. This will create a small information detour; the service call will effectively publish the same message as what we published directly in the code above. But it is still instructive to check out how to create services.
 
 We (well, ChatGPT) prepared an example file for you, `~/mirte_ws/src/mirte_workshop/arm_server.py`.  
 To start it up, use `$ rosrun mirte_workshop arm_server.py`  
 It will not actually do anything until a service is requested. In a new terminal,  
+`$ cd ~/mirte`
 `$ rosservice call /set_arm_front "{}"` will call the service and make the arm move.
 
 This file contains two pre-defined positions. We recommend that you practice adding two more pre-defined positions, for picking up packages off of the robot's back.   
@@ -98,3 +100,4 @@ You now have all the tools to make an integrated service. For example, you could
 - brings the arm to the home position
 
 Discuss with your team members what kind of services your application requires.
+
