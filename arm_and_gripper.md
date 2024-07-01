@@ -59,8 +59,10 @@ Copy the following content in the file:
     # The end of the file is reached, so it stops
 
 Save the file, move to the script directory and test if it works with:
-`$ cd ~/mirte_ws/src/mirte_workshop/scripts`
-`$ python3 arm_simple_script.py`  
+```
+$ cd ~/mirte_ws/src/mirte_workshop/scripts
+$ python3 arm_simple_script.py
+```  
 
 Now, you could start editing this file to prepare an entire choreography for the arm! With while-loops you can make it run forever, until stopped with ctrl-c.
 
@@ -70,8 +72,11 @@ For easy integration with the rest of the robot software, you may want to create
 We (well, ChatGPT) prepared an example file for you, `~/mirte_ws/src/mirte_workshop/arm_server.py`.  
 To start it up, use `$ rosrun mirte_workshop arm_server.py`  
 It will not actually do anything until a service is requested. In a new terminal,  
-`$ cd ~/mirte`
-`$ rosservice call /set_arm_front "{}"` will call the service and make the arm move.
+```
+$ cd ~/mirte
+$ rosservice call /set_arm_front "{}"
+```
+will call the service and make the arm move.
 
 This file contains two pre-defined positions. We recommend that you practice adding two more pre-defined positions, for picking up packages off of the robot's back.   
 It is recommended to ask ChatGPT for explanations of the code. Simply copy the code and ask, for example "what is the meaning of 'self' in the code above?", or "why are some file names green when I type 'ls'?" 
