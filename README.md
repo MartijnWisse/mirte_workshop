@@ -135,7 +135,7 @@ Here are six workshop modules. The best way to work through them is to assign ea
 
 ### [5. RVIZ](rviz.md) *requires laptop/desktop with ROS noetic*
 
-### [6. Markers](markders.md)
+### [6. Markers](markers.md)
 
 ## Make a delivery robot
 Put all the components together. You are free to create your own scenario. Here is one option:  
