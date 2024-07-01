@@ -43,4 +43,5 @@ Save the file. All new terminals will now execute the roslaunch command if you t
 ## Create an integrated system
 Discuss with your team members which files need to be started automatically. Some, like keyboard control, are better started separately in their own terminal. Create your complete application!
 
-It is advised to analyze the mirte_workshop.launch file thoroughly, and request explanation from ChatGPT about any unclear code in that file. It is nice to check the content of the launch file with `/rosnode list`. 
+It is advised to analyze the mirte_workshop.launch file thoroughly, and request explanation from ChatGPT about any unclear code in that file. It is nice to check the content of the launch file with `$ rosnode list`. 
+
