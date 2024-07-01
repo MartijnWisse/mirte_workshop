@@ -5,21 +5,31 @@ Welcome to the Mirte Master workshop! Maybe, you have just assembled your own Mi
 ## Getting started
 ### 1. Preparations
 
-Before switching on the robot, make sure that:
+#### 1.1 Before switching on the robot, make sure that:
 - your Mirte Master has a fresh image containing its basic software, 
 - the battery is sufficiently well charged,
 - the arm is pointing more or less upward.  
 *note: if the robot is already on, you cannot move the arm anymore. Don't try too hard, it might break.*
 
-Switch it on, and wait until text appears on the little rear display. As long as the robot doesn't need to drive, keep it connected to the charger.  
-**Very important**: The battery will break when over-discharged. Never let the battery percentage go below 10%. As long as ROS is running, it will check battery level and automatically shut down below 10%. Without ROS running, be extremely careful.
+#### 1.2 Switching Mirte on
+- Switch it on, and
+- wait until text appears on the little rear display.
+- As long as the robot doesn't need to drive, keep it connected to the charger.
+
+#### 1.3 Battery Safety WARNING
+**Very important**: 
+The battery will break when over-discharged.
+Never let the battery percentage go below 10%. 
+As long as ROS is running, it will check battery level and automatically shut down below 10%. Without ROS running, be extremely careful.
 
 ### 2. Connecting
 
+#### 2.1 Connect to the Wifi
 The rear display shows a WIFI network name, "mirte-XXXXXX". Connect to it with your laptop.  
 **Password**: mirte_mirte  
 *note: you will lose internet, unless your laptop has a wired internet connection*
 
+#### 2.2 Navigate to the control interface
 Open a browser on your laptop. Go to the website "http://192.168.42.1:8000"  
 **Login username**: mirte  
 **Password**: mirte_mirte
@@ -35,7 +45,6 @@ In the vscode web editor, open a new terminal. You will be asked to choose a new
 Share the new password with your team members. They can log in simultaneously from their own laptops.
 
 ### 4. First Linux and ROS tests
-
 Once you have a terminal, let's refresh your linux skills. For example:  
 `$ ls` shows the list of files and folders inside the current folder  
 `$ cd folder_name` will change to folder_name  
@@ -80,7 +89,7 @@ Not all required software is on the robot yet. Before fixing that, you need to f
                          ├── ros_astra_camera  
                          ├── rplidar_ros  
 
-The packages "mirte_navigation" and "mirte_workshop" don't exist yet. We need to get them from github, for which we need an internet connection.  
+**The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from github, for which we need an internet connection.  
 
 ### 2. Connecting the robot to internet
 Make sure that there is a WIFI network that you have control over. For example, use your phone as a hotspot.   
@@ -91,24 +100,33 @@ As soon as you give this command, you lose the connection with the robot. To get
 - Find the robot's IP address from your phone hotspot
 - Use this IP address in the browser
 
-### 3. Cloning the github repositories 
-You are reading this on github. If you scroll up, there is a list of folders and files that together are the package "mirte_workshop". With the green button that says `<> Code`, copy the https address of the repository. Then use the following commands to copy it onto your robot:  
+If this does not work, you can change the wifi using the web interface at https://192.168.42.1
+
+### 3. Cloning the github repositories
+
+#### 3.1 Clone this repository
+You are reading this on github. If you scroll up, there is a list of folders and files that together are the package `mirte_workshop`. With the green button that says `<> Code`, copy the https address of the repository. Then use the following commands to copy it onto your robot:  
 `$ cd ~/mirte_ws/src`  
 `$ git clone ...`  paste the copied https address in place of the dots. Use the mouse right click, or use ctrl+shift+v to paste. 
 
-Find the repository mirte_navigation on github and clone that onto the robot as well.
+#### 3.2 Clone the navigation repository
+Find the repository https://github.com/MartijnWisse/mirte_navigation on github and clone that onto the robot as well.
 
 
 ### 4. Compiling new packages
+
+#### 4.1 Compile
 Whenever you git clone a new package onto the robot, it needs to be compiled so that ROS can find and use it. For example:  
 `$ cd ~/mirte_ws`  
 `$ catkin build mirte_navigation`  
 `$ catkin build mirte_workshop`  
 
+#### 4.2 Refresh Enironment
 Now, in any new terminal, ROS will know how to find the new folders and files. But not in terminals that already exist. To tell them, in each existing terminal you need to type:  
 `$ source ~/mirte_ws/devel/setup.bash`  
 Alternatively, you can close the terminal(s) and open new ones.
 
+#### 4.3 Testing
 Let's test if it all works with the very underwhelming command  
 `$ rosrun mirte_workshop mirte_keyboard.py`  
 
