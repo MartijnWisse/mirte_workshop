@@ -78,16 +78,19 @@ Drive, and in a different terminal check out `rostopic echo /mobile_base_control
 ### 1. Folder structure
 Not all required software is on the robot yet. Before fixing that, you need to familiarize yourself with the overall folder structure. Browse folders in the left panel of VS Code. The important part of the structure is:
 
-    /home/mirte
-            └── mirte_ws
-                    ├── build
-                    ├── devel
-                    └── src
-                         ├── mirte_navigation
-                         ├── mirte_workshop
-                         ├── mirte_ros_packages
-                         ├── ros_astra_camera
-                         ├── rplidar_ros
+```
+/home
+└── mirte
+    └── mirte_ws
+        ├── build
+        ├── devel
+        └── src
+            ├── mirte_navigation
+            ├── mirte_workshop
+            ├── mirte_ros_packages
+            ├── ros_astra_camera
+            ├── rplidar_ros
+```
 
 **The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from GitHub, for which we need an internet connection.
 
