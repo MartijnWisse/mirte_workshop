@@ -34,7 +34,7 @@ Open a browser on your laptop. Go to the website "http://192.168.42.1:8000"
 **Login username**: mirte  
 **Password**: mirte_mirte
 
-You should see the vscode web editor, a powerfull tool to program robots.  
+You should see the vscode web editor, a powerful tool to program robots.  
 In the bottom left, you can modify "Themes" --> "Color Theme" for better visibility.
 
 ### 3. First login
@@ -61,10 +61,10 @@ Let's test that ROS is already running. For example:
 
 ### 5. First robot motions
 Driving is controlled through the topic /mobile_base_controller/cmd_vel. Lift up the robot before trying, so that it doesn't drive off the table!   
-`$ rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>` change the x value in 0.3  
+`$ rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>` change the x value to 0.3  
 
 The robot keeps driving if the message keeps being repeated, with the -r ('rate') option:  
-`$ rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>` change the x value in 0.3  
+`$ rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>` change the x value to 0.3  
 
 Check the messages with `$ rostopic echo` in another terminal 
 
