@@ -25,21 +25,21 @@ As long as ROS is running, it will check battery level and automatically shut do
 ### 2. Connecting
 
 #### 2.1 Connect to the Wifi
-The rear display shows a WIFI network name, "mirte-XXXXXX". Connect to it with your laptop.
-**Password**: mirte_mirte
+The rear display shows a WIFI network name, `mirte-XXXXXX`. Connect to it with your laptop.
+**Password**: `mirte_mirte`
 *note: you will lose internet, unless your laptop has a wired internet connection*
 
 #### 2.2 Navigate to the control interface
 Open a browser on your laptop. Go to the website "http://192.168.42.1:8000"
-**Login username**: mirte
-**Password**: mirte_mirte
+**Login username**: `mirte`
+**Password**: `mirte_mirte`
 
-You should see the vscode web editor, a powerful tool to program robots.  
+You should see the VS Code web editor, a powerful tool to program robots.
 In the bottom left, you can modify "Themes" --> "Color Theme" for better visibility.
 
 ### 3. First login
 
-In the vscode web editor, open a new terminal. You will be asked to choose a new password. After changing the password you may have to log in again.
+In the VS Code web editor, open a new terminal. You will be asked to choose a new password. After changing the password you may have to log in again.
 *note: in Linux, you don't see what you type in the password field, for safety.*
 
 Share the new password with your team members. They can log in simultaneously from their own laptops.
@@ -50,33 +50,33 @@ Once you have a terminal, let's refresh your linux skills. For example:
 `$ cd folder_name` will change to folder_name
 `$ cd ..` will change one folder up
 `$ python3` will start an interactive python session, exit with `>>> exit()`
-`$ <tab>` will autocomplete your command, very useful to prevent typos
+<kbd>Tab</kbd> will autocomplete your command, very useful to prevent typos
 
 Let's test that ROS is already running. For example:
-`$ rosnode list` shows all ros nodes that are currently running
+`$ rosnode list` shows all ROS nodes that are currently running
 `$ rostopic list` shows all topics that exist
-`$ rostopic echo /topic_name` displays the messages being sent over /topic_name (e.g. /arm/joint_states)
-`$ ctrl-c` stops the last command
-`$ rosservice list` shows all available ros services
+`$ rostopic echo /topic_name` displays the messages being sent over `/topic_name` (e.g. `/arm/joint_states`)
+<kbd>Ctrl</kbd>+<kbd>c</kbd> stops the last command
+`$ rosservice list` shows all available ROS services
 
 ### 5. First robot motions
-Driving is controlled through the topic /mobile_base_controller/cmd_vel. Lift up the robot before trying, so that it doesn't drive off the table!
-`$ rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>` change the x value to 0.3
+Driving is controlled through the topic `/mobile_base_controller/cmd_vel`. Lift up the robot before trying, so that it doesn't drive off the table!
+`$ rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>` change the `x` value to `0.3`
 
-The robot keeps driving if the message keeps being repeated, with the -r ('rate') option:
-`$ rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>` change the x value to 0.3
+The robot keeps driving if the message keeps being repeated, with the `-r` (`--rate`) option:
+`$ rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>` change the `x` value to `0.3`
 
 Check the messages with `$ rostopic echo` in another terminal
 
 ### 6. First launch of an additional ROS node: driving around!
 Driving is easier through keyboard teleoperation. This is available in a ROS node that is not currently running.
 `$ roslaunch mirte_teleop teleopkey.launch` will start keyboard teleoperation.
-Use the x and c keys to tone down linear velocity to 0.3 and angular velocity to 0.6.
+Use the <kbd>x</kbd> and <kbd>c</kbd> keys to tone down linear velocity to `0.3` and angular velocity to `0.6`.
 Drive, and in a different terminal check out `rostopic echo /mobile_base_controller/cmd_vel`
 
 ## Getting the workshop software on the robot
 ### 1. Folder structure
-Not all required software is on the robot yet. Before fixing that, you need to familiarize yourself with the overall folder structure. Browse folders in the left panel of vscode. The important part of the structure is:
+Not all required software is on the robot yet. Before fixing that, you need to familiarize yourself with the overall folder structure. Browse folders in the left panel of VS Code. The important part of the structure is:
 
     /home/mirte
             └── mirte_ws
@@ -89,7 +89,7 @@ Not all required software is on the robot yet. Before fixing that, you need to f
                          ├── ros_astra_camera
                          ├── rplidar_ros
 
-**The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from github, for which we need an internet connection.
+**The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from GitHub, for which we need an internet connection.
 
 ### 2. Connecting the robot to internet
 Make sure that there is a WIFI network that you have control over. For example, use your phone as a hotspot.
@@ -100,17 +100,17 @@ As soon as you give this command, you lose the connection with the robot. To get
 - Find the robot's IP address from your phone hotspot
 - Use this IP address in the browser
 
-If this does not work, you can change the wifi using the web interface at https://192.168.42.1
+If this does not work, you can change the WIFI using the web interface at https://192.168.42.1
 
-### 3. Cloning the github repositories
+### 3. Cloning the GitHub repositories
 
 #### 3.1 Clone this repository
-You are reading this on github. If you scroll up, there is a list of folders and files that together are the package `mirte_workshop`. With the green button that says `<> Code`, copy the https address of the repository. Then use the following commands to copy it onto your robot:
+You are reading this on GitHub. If you scroll up, there is a list of folders and files that together are the package `mirte_workshop`. With the green button that says `<> Code`, copy the https address of the repository. Then use the following commands to copy it onto your robot:
 `$ cd ~/mirte_ws/src`
-`$ git clone ...`  paste the copied https address in place of the dots. Use the mouse right click, or use ctrl+shift+v to paste.
+`$ git clone ...`  paste the copied https address in place of the dots. Use the mouse right click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd> to paste.
 
 #### 3.2 Clone the navigation repository
-Find the repository https://github.com/MartijnWisse/mirte_navigation on github and clone that onto the robot as well.
+Find the repository [MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) on GitHub and clone that onto the robot as well.
 
 
 ### 4. Compiling new packages
@@ -138,7 +138,7 @@ When you turned on the robot, ROS was automatically started. However:
 `$ sudo service mirte-ros stop`  will stop the invisible ROS instance.
 `$ roslaunch mirte_workshop mirte_workshop.launch`  will start the right one.
 
-The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and ctrl-c will stop ROS. Therefore, open new terminals to run additional commands.
+The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and <kbd>Ctrl</kbd>+<kbd>c</kbd> will stop ROS. Therefore, open new terminals to run additional commands.
 
 ## Get all the components ready
 Here are six workshop modules. The best way to work through them is to assign each module to a different team member.
