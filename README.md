@@ -46,31 +46,31 @@ Share the new password with your team members. They can log in simultaneously fr
 
 ### 4. First Linux and ROS tests
 Once you have a terminal, let's refresh your linux skills. For example:
-`$ ls` shows the list of files and folders inside the current folder
-`$ cd folder_name` will change to folder_name
-`$ cd ..` will change one folder up
-`$ python3` will start an interactive python session, exit with `>>> exit()`
+`ls` shows the list of files and folders inside the current folder
+`cd folder_name` will change to folder_name
+`cd ..` will change one folder up
+`python3` will start an interactive python session, exit with `>>> exit()`
 <kbd>Tab</kbd> will autocomplete your command, very useful to prevent typos
 
 Let's test that ROS is already running. For example:
-`$ rosnode list` shows all ROS nodes that are currently running
-`$ rostopic list` shows all topics that exist
-`$ rostopic echo /topic_name` displays the messages being sent over `/topic_name` (e.g. `/arm/joint_states`)
+`rosnode list` shows all ROS nodes that are currently running
+`rostopic list` shows all topics that exist
+`rostopic echo /topic_name` displays the messages being sent over `/topic_name` (e.g. `/arm/joint_states`)
 <kbd>Ctrl</kbd>+<kbd>c</kbd> stops the last command
-`$ rosservice list` shows all available ROS services
+`rosservice list` shows all available ROS services
 
 ### 5. First robot motions
 Driving is controlled through the topic `/mobile_base_controller/cmd_vel`. Lift up the robot before trying, so that it doesn't drive off the table!
-`$ rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>` change the `x` value to `0.3`
+`rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>` change the `x` value to `0.3`
 
 The robot keeps driving if the message keeps being repeated, with the `-r` (`--rate`) option:
-`$ rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>` change the `x` value to `0.3`
+`rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>` change the `x` value to `0.3`
 
-Check the messages with `$ rostopic echo` in another terminal
+Check the messages with `rostopic echo` in another terminal
 
 ### 6. First launch of an additional ROS node: driving around!
 Driving is easier through keyboard teleoperation. This is available in a ROS node that is not currently running.
-`$ roslaunch mirte_teleop teleopkey.launch` will start keyboard teleoperation.
+`roslaunch mirte_teleop teleopkey.launch` will start keyboard teleoperation.
 Use the <kbd>x</kbd> and <kbd>c</kbd> keys to tone down linear velocity to `0.3` and angular velocity to `0.6`.
 Drive, and in a different terminal check out `rostopic echo /mobile_base_controller/cmd_vel`
 
@@ -96,7 +96,7 @@ Not all required software is on the robot yet. Before fixing that, you need to f
 
 ### 2. Connecting the robot to internet
 Make sure that there is a WIFI network that you have control over. For example, use your phone as a hotspot.
-`$ nmcli device wifi connect "SSID" password "PASSWORD"`   (use the correct SSID and PASSWORD) will connect your robot.
+`nmcli device wifi connect "SSID" password "PASSWORD"`   (use the correct SSID and PASSWORD) will connect your robot.
 
 As soon as you give this command, you lose the connection with the robot. To get back in touch:
 - Connect your laptop to the same WIFI network
@@ -109,8 +109,8 @@ If this does not work, you can change the WIFI using the web interface at https:
 
 #### 3.1 Clone this repository
 You are reading this on GitHub. If you scroll up, there is a list of folders and files that together are the package `mirte_workshop`. With the green button that says `<> Code`, copy the https address of the repository. Then use the following commands to copy it onto your robot:
-`$ cd ~/mirte_ws/src`
-`$ git clone ...`  paste the copied https address in place of the dots. Use the mouse right click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd> to paste.
+`cd ~/mirte_ws/src`
+`git clone ...`  paste the copied https address in place of the dots. Use the mouse right click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd> to paste.
 
 #### 3.2 Clone the navigation repository
 Find the repository [MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) on GitHub and clone that onto the robot as well.
@@ -120,26 +120,26 @@ Find the repository [MartijnWisse/mirte_navigation](https://github.com/MartijnWi
 
 #### 4.1 Compile
 Whenever you git clone a new package onto the robot, it needs to be compiled so that ROS can find and use it. For example:
-`$ cd ~/mirte_ws`
-`$ catkin build mirte_navigation`
-`$ catkin build mirte_workshop`
+`cd ~/mirte_ws`
+`catkin build mirte_navigation`
+`catkin build mirte_workshop`
 
 #### 4.2 Refresh Enironment
 Now, in any new terminal, ROS will know how to find the new folders and files. But not in terminals that already exist. To tell them, in each existing terminal you need to type:
-`$ source ~/mirte_ws/devel/setup.bash`
+`source ~/mirte_ws/devel/setup.bash`
 Alternatively, you can close the terminal(s) and open new ones.
 
 #### 4.3 Testing
 Let's test if it all works with the very underwhelming command
-`$ rosrun mirte_workshop mirte_keyboard.py`
+`rosrun mirte_workshop mirte_keyboard.py`
 
 ### 5. Launching mirte_workshop specific configuration
 When you turned on the robot, ROS was automatically started. However:
 - This is not exactly the right configuration for the workshop, and
 - It doesn't show screen output, so we don't know what is going on
 
-`$ sudo service mirte-ros stop`  will stop the invisible ROS instance.
-`$ roslaunch mirte_workshop mirte_workshop.launch`  will start the right one.
+`sudo service mirte-ros stop`  will stop the invisible ROS instance.
+`roslaunch mirte_workshop mirte_workshop.launch`  will start the right one.
 
 The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and <kbd>Ctrl</kbd>+<kbd>c</kbd> will stop ROS. Therefore, open new terminals to run additional commands.
 
