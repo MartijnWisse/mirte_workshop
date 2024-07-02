@@ -27,7 +27,7 @@ As long as ROS is running, it will check battery level and automatically shut do
 #### 2.1 Connect to the Wifi
 The rear display shows a WIFI network name, `mirte-XXXXXX`. Connect to it with your laptop.
 **Password**: `mirte_mirte`
-*note: you will lose internet, unless your laptop has a wired internet connection*
+*note: you will lose internet access, unless your laptop has another (fi: wired) internet connection*
 
 #### 2.2 Navigate to the control interface
 Open a browser on your laptop. Go to the website "http://192.168.42.1:8000"
@@ -40,7 +40,7 @@ In the bottom left, you can modify "Themes" --> "Color Theme" for better visibil
 ### 3. First login
 
 In the VS Code web editor, open a new terminal. You will be asked to choose a new password. After changing the password you may have to log in again.
-*note: in Linux, you don't see what you type in the password field, for safety.*
+*note: in Linux, you don't see what you type in the password field, this is for improved security.*
 
 Share the new password with your team members. They can log in simultaneously from their own laptops.
 
