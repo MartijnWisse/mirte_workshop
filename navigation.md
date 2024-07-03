@@ -23,7 +23,9 @@ Again, you need RVIZ to see whether it works. In addition to showing the map, yo
 ## Using a custom map name
 If you wish to use a different map name, use your custom map name in the map_saver command. To use this map for navigation, open the file `~/mirte_ws/src/mirte_navigation/launch/amcl_demo.launch` and change the map name in the line 
 
-    <arg name="map_file" default="$(find mirte_workshop)/maps/default.yaml"/>
+```xml
+<arg name="map_file" default="$(find mirte_workshop)/maps/default.yaml"/>
+```
 
 ## Navigating
 A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RVIZ. Pay attention to the terminal from which amcl_demo was launched.  

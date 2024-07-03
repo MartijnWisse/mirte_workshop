@@ -11,9 +11,11 @@ The command structure is roslaunch package_name file_name. It cleverly knows to 
 In the folder ~/mirte_ws/src/mirte_workshop/launch, create a new file and call it 'arm_and_gripper.launch'  
 Copy the following code in it:
 
-    <launch>
-        <node pkg="mirte_workshop" name="arm_server" type="arm_server.py" output="screen"/>
-    </launch>
+```xml
+<launch>
+    <node pkg="mirte_workshop" name="arm_server" type="arm_server.py" output="screen"/>
+</launch>
+```
 
 Save the file and test it with `$ roslaunch mirte_workshop arm_and_gripper.launch`  
 Now add the gripper_server.py node to the launch file and test it. Make sure that nodes are not started twice, note that other team members may start nodes from their computer.  
@@ -28,7 +30,9 @@ By the way, the rosrun command is still better than `$ python3 arm_server.py`. F
 ## Include other launch files
 Code that works well, does not need to be started separately; you can have it launch together with all the other nodes. Just leave your new arm_and_gripper.launch file as it is, and add the following line to mirte_workshop.launch
 
-    <include file="$(find mirte_workshop)/launch/arm_and_gripper.launch"/>
+```xml
+<include file="$(find mirte_workshop)/launch/arm_and_gripper.launch"/>
+```
 
 Or, vice versa, you could include the mirte_workshop.launch file in your own.
 
@@ -36,7 +40,9 @@ Or, vice versa, you could include the mirte_workshop.launch file in your own.
 For an even faster start, you can create an 'alias' in Linux. 
 Open the file `~/.bashrc` in the editor. Add the following line at the bottom of the file:  
 
-    alias go='roslaunch mirte_workshop mirte_workshop.launch'
+```bash
+alias go='roslaunch mirte_workshop mirte_workshop.launch'
+```
 
 Save the file. All new terminals will now execute the roslaunch command if you type `$ go`, but existing terminals won't, unless you `$ source ~/.bashrc` 
 
