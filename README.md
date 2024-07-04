@@ -46,12 +46,13 @@ You should see the VS Code web editor, a powerful tool to program robots.
 
 ### 3. First login
 
-In the VS Code web editor, open a new terminal. You will be asked to choose a new password. After changing the password you may have to log in again.
+In the VS Code web editor, open a new terminal. One team member should change the default password through the command
+|`passwd`|
 
 > [!NOTE]  
 > In Linux, you don't see what you type in the password field, this is for improved security.
 
-Share the new password with your team members. They can log in simultaneously from their own laptops.
+Carefully read the response on the screen. Share the new password with your team members. They can now log in simultaneously from their own laptops.
 
 ### 4. First Linux and ROS tests
 Once you have a terminal, let's refresh your linux skills. For example:
