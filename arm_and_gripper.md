@@ -15,48 +15,50 @@ To make the robot autonomous, the arm commands should come from code rather than
 
 Copy the following content in the file:  
 
-    #!/usr/bin/env python3
+```python
+#!/usr/bin/env python3
 
-    # ---- Load libraries ----
-    # load the library with ROS functionality for Python
-    import rospy      
-    # load the specific message format required for joint commands
-    from std_msgs.msg import Float64MultiArray   
+# ---- Load libraries ----
+# load the library with ROS functionality for Python
+import rospy
+# load the specific message format required for joint commands
+from std_msgs.msg import Float64MultiArray
 
-    # ---- Initialize ----
-    # start a new ROS node
-    rospy.init_node('arm_simple_script')  
-    # provide on-screen information
-    rospy.loginfo('The arm_simple_script has started!')  
-    # create the publisher, tell it which topic to publish on
-    arm_command_publisher = rospy.Publisher('/arm/joint_position_controller/command', Float64MultiArray, queue_size=10)
-    # give the publisher some time to get ready
-    rospy.sleep(1)  
-
-
-    # ---- Make the first motion ----
-    # define the variable type
-    position1 = Float64MultiArray()
-    # define the variable values
-    position1.data = [0, 0, 0, 0]  
-    # publish the command
-    arm_command_publisher.publish(position1)
-    # provide on-screen information
-    rospy.loginfo('Moving to position 1')
+# ---- Initialize ----
+# start a new ROS node
+rospy.init_node('arm_simple_script')
+# provide on-screen information
+rospy.loginfo('The arm_simple_script has started!')
+# create the publisher, tell it which topic to publish on
+arm_command_publisher = rospy.Publisher('/arm/joint_position_controller/command', Float64MultiArray, queue_size=10)
+# give the publisher some time to get ready
+rospy.sleep(1)
 
 
-    # give the robot some time to execute the first motion
-    rospy.sleep(1)
+# ---- Make the first motion ----
+# define the variable type
+position1 = Float64MultiArray()
+# define the variable values
+position1.data = [0, 0, 0, 0]
+# publish the command
+arm_command_publisher.publish(position1)
+# provide on-screen information
+rospy.loginfo('Moving to position 1')
 
 
-    # ---- Make the second motion ----
-    position2 = Float64MultiArray()
-    position2.data = [1, 0, 0, 0]
-    arm_command_publisher.publish(position2)
-    rospy.loginfo('Moving to position 2')
+# give the robot some time to execute the first motion
+rospy.sleep(1)
 
 
-    # The end of the file is reached, so it stops
+# ---- Make the second motion ----
+position2 = Float64MultiArray()
+position2.data = [1, 0, 0, 0]
+arm_command_publisher.publish(position2)
+rospy.loginfo('Moving to position 2')
+
+
+# The end of the file is reached, so it stops
+```
 
 Save the file, move to the script directory and test if it works with:
 ```
