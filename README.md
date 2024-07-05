@@ -2,21 +2,21 @@
 
 Welcome to the Mirte Master workshop! Maybe, you have just assembled your own Mirte Master using our open-source designs. More likely, you are participating in a workshop and have been told to visit this page. Anyhow, you are about to give your Mirte Master its first abilities!
 
-## Getting started
-### 1. Preparations
+## 1. Getting started
+### 1.1 Preparations
 
-#### 1.1 Before switching on the robot, make sure that:
+#### 1.1.1 Before switching on the robot, make sure that:
 - your Mirte Master has a fresh image containing its basic software,
 - the battery is sufficiently well charged,
 - the arm is pointing more or less upward.
 *note: if the robot is already on, you cannot move the arm anymore. Don't try too hard, it might break.*
 
-#### 1.2 Switching Mirte on
+#### 1.1.2 Switching Mirte on
 - Switch it on, and
 - wait until text appears on the little rear display.
 - As long as the robot doesn't need to drive, keep it connected to the charger.
 
-#### 1.3 Battery Safety WARNING
+#### 1.1.3 Battery Safety WARNING
 **Very important**:
 The battery will break when over-discharged.
 
@@ -25,15 +25,15 @@ The battery will break when over-discharged.
 
 As long as ROS is running, it will check battery level and automatically shut down below 10%. Without ROS running, be extremely careful.
 
-### 2. Connecting
+### 1.2. Connecting
 
-#### 2.1 Connect to the Wifi
-The rear display shows a WIFI network name, `mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`).
+#### 1.2.1 Connect to the Wifi
+The rear display shows a WIFI network name, `Mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`).
 
 > [!NOTE]  
 > You will lose internet access, unless your laptop has another (fi: wired) internet connection.
 
-#### 2.2 Navigate to the control interface
+#### 1.2.2 Navigate to the control interface
 Open a browser on your laptop and go to the website "http://192.168.42.1:8000"
 
 **Username**: `mirte`  
@@ -44,17 +44,17 @@ You should see the VS Code web editor, a powerful tool to program robots.
 > [!TIP]  
 > In the bottom left, you can modify "Themes" --> "Color Theme" for better visibility.
 
-### 3. First login
+### 1.3. First login
 
 In the VS Code web editor, open a new terminal. One team member should change the default password through the command
-|`passwd`|
+`passwd`
 
 > [!NOTE]  
 > In Linux, you don't see what you type in the password field, this is for improved security.
 
 Carefully read the response on the screen. Share the new password with your team members. They can now log in simultaneously from their own laptops.
 
-### 4. First Linux and ROS tests
+### 1.4. First Linux and ROS tests
 Once you have a terminal, let's refresh your linux skills. For example:
 
 | Command|  |
@@ -75,14 +75,14 @@ Let's test that ROS is already running. For example:
 | <kbd>Ctrl</kbd>+<kbd>c</kbd> | stops the last command |
 | `rosservice list` | shows all available ROS services |
 
-### 5. First robot motions
+### 1.5. First robot motions
 Driving is controlled through the topic `/mobile_base_controller/cmd_vel`.
 
 > [!CAUTION]  
 > Lift up the robot before trying, so that it doesn't drive off the table!
 
 Try the following command.
-After pressing <kbd>Tab</kbd> twice, change the `x` value to `0.3` and press <kbd>Enter</kbd> to publish the message:
+After pressing <kbd>Tab</kbd> twice, change the `linear.x` value to `0.3` and press <kbd>Enter</kbd> to publish the message:
 
 ```bash
 rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>
@@ -102,7 +102,7 @@ Check the messages with `rostopic echo` in another terminal.
 Stop the publisher with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
 
-### 6. First launch of an additional ROS node: driving around!
+### 1.6. First launch of an additional ROS node: driving around!
 Driving is easier through keyboard teleoperation. This is available in a ROS node that is not currently running.
 `roslaunch mirte_teleop teleopkey.launch` will start keyboard teleoperation.
 
@@ -110,8 +110,8 @@ Use the <kbd>x</kbd> and <kbd>c</kbd> keys to tone down linear velocity to `0.3`
 
 Drive, and in a different terminal check out `rostopic echo /mobile_base_controller/cmd_vel`
 
-## Getting the workshop software on the robot
-### 1. Folder structure
+## 2. Getting the workshop software on the robot
+### 2.1. Folder structure
 Not all required software is on the robot yet. Before fixing that, you need to familiarize yourself with the overall folder structure. Browse folders in the left panel of VS Code. The important part of the structure is:
 
 ```
@@ -130,7 +130,7 @@ Not all required software is on the robot yet. Before fixing that, you need to f
 
 **The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from GitHub, for which we need an internet connection.
 
-### 2. Connecting the robot to internet
+### 2.2. Connecting the robot to internet
 Make sure that there is a WIFI network that you have control over. For example, use your phone as a hotspot.
 
 The following command will connect your robot (use the correct SSID and PASSWORD):
@@ -146,9 +146,9 @@ As soon as you give this command, you lose the connection with the robot. To get
 
 If this does not work, you can change the WIFI using the web interface at https://192.168.42.1
 
-### 3. Cloning the GitHub repositories
+### 2.3. Cloning the GitHub repositories
 
-#### 3.1 Clone this repository
+#### 2.3.1 Clone this repository
 You are reading this on GitHub. If you scroll up, there is a list of folders and files that together are the package `mirte_workshop`. With the green button that says `<> Code`, copy the https address of the repository. Then use the following commands to copy it onto your robot:
 
 ```bash
@@ -159,13 +159,13 @@ git clone <...>
 Replace `<...>` with the https address of the repository. Paste it using a right mouse click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd>.
 
 
-#### 3.2 Clone the navigation repository
+#### 2.3.2 Clone the navigation repository
 Find the repository [MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) on GitHub and clone that onto the robot as well.
 
 
-### 4. Compiling new packages
+### 2.4. Compiling new packages
 
-#### 4.1 Compile
+#### 2.4.1 Compile
 Whenever you git clone a new package onto the robot, it needs to be compiled so that ROS can find and use it. For example:
 
 ```bash
@@ -174,7 +174,7 @@ catkin build mirte_navigation
 catkin build mirte_workshop
 ```
 
-#### 4.2 Refresh Environment
+#### 2.4.2 Refresh Environment
 Now, in any new terminal, ROS will know how to find the new folders and files. But not in terminals that already exist. To tell them, in each existing terminal you need to type:
 
 ```bash
@@ -183,14 +183,16 @@ source ~/mirte_ws/devel/setup.bash
 
 Alternatively, you can close the terminal(s) and open new ones.
 
-#### 4.3 Testing
+#### 2.4.3 Testing
 Let's test if it all works with the very underwhelming command
 
 ```bash
 rosrun mirte_workshop mirte_keyboard.py
 ```
 
-### 5. Launching mirte_workshop specific configuration
+It works if there are no errors, and if you see the characters that you type, back on the screen. Check the python code to find out which new topic has been created; you can see the same characters when you echo that topic.
+
+### 2.5. Launching mirte_workshop specific configuration
 When you turned on the robot, ROS was automatically started. However:
 - This is not exactly the right configuration for the workshop, and
 - It doesn't show screen output, so we don't know what is going on
@@ -209,7 +211,7 @@ roslaunch mirte_workshop mirte_workshop.launch
 
 The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and <kbd>Ctrl</kbd>+<kbd>c</kbd> will stop ROS. Therefore, open new terminals to run additional commands.
 
-## Get all the components ready
+## 3. Get all the components ready
 Here are six workshop modules. The best way to work through them is to assign each module to a different team member.
 
 ### [1. Arm and gripper](arm_and_gripper.md)
@@ -224,7 +226,7 @@ Here are six workshop modules. The best way to work through them is to assign ea
 
 ### [6. Markers](markers.md)
 
-## Make a delivery robot
+## 4. Make a delivery robot
 Put all the components together. You are free to create your own scenario. Here is one option:
 - At the press of one key (e.g., '1'), drive to a location and deliver a package
 - At the press of another key, drive to a second location and deliver a package
