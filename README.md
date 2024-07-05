@@ -1,3 +1,6 @@
+![Mirte Master image](./mirte_master.jpeg)  
+*Image by Chris Pek*
+
 # Mirte Master workshop
 
 Welcome to the Mirte Master workshop! Maybe, you have just assembled your own Mirte Master using our open-source designs. More likely, you are participating in a workshop and have been told to visit this page. Anyhow, you are about to give your Mirte Master its first abilities!
