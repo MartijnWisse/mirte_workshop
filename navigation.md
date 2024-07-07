@@ -14,8 +14,26 @@ If the map looks good, save it *before shutting down gmapping*. In a new termina
 
 This command updates the files default.yaml and default.pgm in the directory ~/mirte_ws/src/mirte_workshop/maps. Every time you run the command, these files will be overwritten.Open the .yaml file to see that it contains a reference to the .pgm file, so moving files to different folders must be done with care.
 
+Now, gmapping can be closed with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
+
+## Installing the Navigation Stack
+The following command will fail (try it):
+
+`$ roslaunch mirte_navigation amcl_demo.launch`  
+
+It will complain that the 'local_dwa_planner' doesn't exist. The missing component is part of the standard [Navigation Stack](http://wiki.ros.org/navigation), which we'll need on our Mirte Master. Type the following commands, and note that they each take some time to process:
+
+```
+sudo apt-get update
+sudo apt-get install ros-noetic-navigation
+```
+
+You may need to inform each of your terminals about the newly installed package 
+
+`$ source ~/mirte_ws/devel/setup.bash` 
+
 ## Localizing with a saved map
-If the map is successfully saved, close gmapping and start localization with:  
+With the successfully saved map and successfully installed Navigation stack, we can now run  
 `$ roslaunch mirte_navigation amcl_demo.launch`  
 
 Again, you need RVIZ to see whether it works. In addition to showing the map, you also want to see the lidar data, the global costmap and the local costmap. The initial position estimate is probably wrong. Make it approximately correct in RVIZ by clicking the "2D Pose Estimate" (green arrow) in the map. This will only work if in the left pane of RVIZ, Displays - Global Options - Fixed Frame is set to "map".

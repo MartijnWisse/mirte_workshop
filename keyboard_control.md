@@ -1,6 +1,6 @@
 # Keyboard control
 
-With teleopkey.launch, we can easily test the driving functionality. It would be nice to create the same easy testing for all our new ROS nodes. 
+With teleopkey.launch, we could easily test the driving functionality. Now, we will create the same easy testing for all our new ROS nodes. 
 
 ## Simple keyboard input node
 We created a simple file to get started.  
