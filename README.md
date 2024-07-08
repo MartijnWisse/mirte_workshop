@@ -142,12 +142,12 @@ The following command will connect your robot (use the correct SSID and PASSWORD
 nmcli device wifi connect "SSID" password "PASSWORD"
 ```
 
-As soon as you give this command, you lose the connection with the robot. To get back in touch:
+If this does not work, you can change the WIFI using the web interface at http://192.168.42.1, under the "Settings" tab. However, this page only lists the SSIDs that were available when the robot booted, so in the worst case you'll need to first turn on your WIFI network, reboot the robot, and then access this web interface.
+
+As soon as the robot is connected to the WIFI network, you will lose the direct connection to it. To get back in touch:
 - Connect your laptop to the same WIFI network
 - Find the robot's IP address from your phone hotspot
 - Use this IP address in the browser
-
-If this does not work, you can change the WIFI using the web interface at http://192.168.42.1, under the "Settings" tab. However, this page only lists the SSIDs that were available when the robot booted, so in the worst case you'll need to first turn on your WIFI network, reboot the robot, and then access this web interface.
 
 ### 2.3. Cloning the GitHub repositories
 
