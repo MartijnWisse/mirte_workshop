@@ -42,10 +42,14 @@ Through the 'add' button (encircled in the image above), try to add the followin
 | Image | /camera/color/image_raw (Transport Hint 'compressed') | shows the front camera image |
 | MarkerArray | /stored_points_markers | Only works if 'marker_publisher_node.py' is running. Shows stored locations
 
-Some things only work properly if you set under 'Global Options' (top left of screen) the parameter 'Fixed Frame' to 'map'.
+Some things only work properly if you set under 'Global Options' (top left of screen) the parameter 'Fixed Frame' to 'map', but initially you should set 'Fixed Frame' to 'base_link'.
+
+Every time you select an item from a drop-down menu, hit the \<Enter\> key.
 
 ## Save configuration
-To prevent that you have to set all these things again, save the RVIZ config with ctrl-s (default.rviz) or use "save as". If you don't use default.rviz, provide the config name the next time you start rviz:
+To prevent that you have to set all these things again, save the RVIZ config with File -> Save Config As. Navigate to a suitable location on the laptop, enter a name and click the Save button. The next time you start rviz, you can specify the configuration:
 
-`$ rviz -d /path/to/your/config/file.rviz`
+```bash
+rviz -d /path/to/your/config/filename.rviz
+```
 
