@@ -12,9 +12,8 @@ The robot will be designated as the "ROS Master". This means that the robot will
 `$ export ROS_IP=192.168.yyy.yyy` with the IP address of each, obtainable with `$ hostname -I` in the terminal.  
 *note: these parameters must be set in each terminal that you open both in the robot as well as in the external computer*
 
-Test if all is set correctly with  
-`$ rostopic list`  and
-`$ rosservice call /mirte/set_servoGripper_servo_angle "angle: -0.2"` 
+We can partially test if it set correctly with  
+`rostopic list`, but the real testing is done below, when working with RVIZ
 
 If it all works, then on the robot this can be automated by adding the following code at the end of the file ~/.bashrc
 
@@ -27,7 +26,15 @@ export ROS_MASTER_URI=http://$ip_address:11311
 ```
 
 ## Launch RVIZ
-The easiest step of all; in the external computer, type `$ rviz`. The following screen will pop up:
+Before continuing, coordinate with your team mates. All rosnodes and launch files should be stopped, then in all terminals you need to run
+
+```
+source ~/.bashrc
+```
+
+This will make sure that the ROS_MASTER_URI and ROS_IP is correctly set in all terminals. Now you can roslaunch the mirte_workshop.launch file again and everyone can resume their work.
+
+Then, the easiest step of all; in the external computer, type `$ rviz`. The following screen will pop up:
 
 ![Empty RVIZ screen](./empty_rviz.png)  
 
