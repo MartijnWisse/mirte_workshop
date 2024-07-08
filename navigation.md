@@ -16,9 +16,9 @@ If the map looks good, save it *before shutting down gmapping*. In a new termina
 rosrun map_server map_saver -f /home/mirte/mirte_ws/src/mirte_workshop/maps/default
 ```  
 
-This command updates the files default.yaml and default.pgm in the directory ~/mirte_ws/src/mirte_workshop/maps. Every time you run the command, these files will be overwritten. Open the .yaml file to see that it contains a reference to the .pgm file, so moving files to different folders must be done with care.
+This command updates the files `default.yaml` and `default.pgm` in the directory `~/mirte_ws/src/mirte_workshop/maps`. Every time you run the command, these files will be overwritten. Open the `default.yaml` file to see that it contains a reference to the `default.pgm` file, so moving files to different folders must be done with care.
 
-Now, gmapping can be closed with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
+Now, close gmapping with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
 ## 3. Installing the Navigation Stack
 The following command will fail (try it):
@@ -34,8 +34,7 @@ sudo apt-get update
 sudo apt-get install ros-noetic-navigation
 ```
 
-You may need to inform each of your terminals about the newly installed package 
-
+You may need to inform each of your terminals about the newly installed package:
 ```bash
 source ~/mirte_ws/devel/setup.bash
 ``` 
@@ -66,12 +65,12 @@ will create the rosservice /move_to. Until the 'markers' team member is ready, t
 rosservice call /move_to "location: 'start'"
 ```   
 
-It is recommended to check the file move_to_server.py and ask anything that is unclear to ChatGPT. Simply copy the entire code and ask. It will also assist with unexpected errors.
+It is recommended to check the file `move_to_server.py` and ask anything that is unclear to ChatGPT. Simply copy the entire code and ask. It will also assist with unexpected errors.
 
 ## 7. Tuning navigation parameters
 Navigation is endlessly complex. We are now using the nav_core package. There are other packages such as HectorSlam and Slam_toolbox. Even within our current package, there are several planners to choose from. We currently use DWA_local_planner. And then, within this choice, there are many parameters that can be modified.
 
-Try to follow the breadcrumb trail that starts in the file amcl_demo.launch and ends in the loading of several yaml files, each containing many parameter values. The first parameters to change could be:
+Try to follow the breadcrumb trail that starts in the file `amcl_demo.launch` and ends in the loading of several yaml files, each containing many parameter values. The first parameters to change could be:
 - min and max velocities
 - goal tolerances
 
