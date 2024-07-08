@@ -4,37 +4,47 @@ This module requires close collaboration with the 'RVIZ' module, to see the resu
 
 ## Mapping
 We will use a standard package for mapping and navigation; gmapping and amcl. Let's tell the robot to create a map by driving around and storing the lidar data in a map:  
-`$ roslaunch mirte_navigation gmapping.launch` 
+```bash
+roslaunch mirte_navigation gmapping.launch
+``` 
 
-If this starts without errors, then it is working. Unfortunately, the Mirte Master is not equipped to show any graphics, it can only show text. Therefore, ask the RVIZ team member to add a map display and show the /map topic. You'll see a very incomplete map. Drive around with teleopkey to see the map grow. Don't turn too briskly to create a neat map. If the map is ruined, launch gmapping again.
+If this starts without errors, then it is working. Unfortunately, the Mirte Master is not equipped to show any graphics, it can only show text. Therefore, ask the RVIZ team member to add a map display and show the /map topic. In 'Global Options' (top left of screen) ask them to set the parameter 'Fixed Frame' to 'map'. You'll see a very incomplete map. Drive around with teleopkey to see the map grow. Don't turn too briskly to create a neat map. If the map is ruined, launch gmapping again.
 
 ## Saving the map
 If the map looks good, save it *before shutting down gmapping*. In a new terminal, use the following command:  
-`$ rosrun map_server map_saver -f /home/mirte/mirte_ws/src/mirte_workshop/maps/default`.  
+```bash
+rosrun map_server map_saver -f /home/mirte/mirte_ws/src/mirte_workshop/maps/default
+```  
 
-This command updates the files default.yaml and default.pgm in the directory ~/mirte_ws/src/mirte_workshop/maps. Every time you run the command, these files will be overwritten.Open the .yaml file to see that it contains a reference to the .pgm file, so moving files to different folders must be done with care.
+This command updates the files default.yaml and default.pgm in the directory ~/mirte_ws/src/mirte_workshop/maps. Every time you run the command, these files will be overwritten. Open the .yaml file to see that it contains a reference to the .pgm file, so moving files to different folders must be done with care.
 
 Now, gmapping can be closed with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
 ## Installing the Navigation Stack
 The following command will fail (try it):
 
-`$ roslaunch mirte_navigation amcl_demo.launch`  
+```bash
+roslaunch mirte_navigation amcl_demo.launch
+```  
 
 It will complain that the 'local_dwa_planner' doesn't exist. The missing component is part of the standard [Navigation Stack](http://wiki.ros.org/navigation), which we'll need on our Mirte Master. Type the following commands, and note that they each take some time to process:
 
-```
+```bash
 sudo apt-get update
 sudo apt-get install ros-noetic-navigation
 ```
 
 You may need to inform each of your terminals about the newly installed package 
 
-`$ source ~/mirte_ws/devel/setup.bash` 
+```bash
+source ~/mirte_ws/devel/setup.bash
+``` 
 
 ## Localizing with a saved map
 With the successfully saved map and successfully installed Navigation stack, we can now run  
-`$ roslaunch mirte_navigation amcl_demo.launch`  
+```bash
+roslaunch mirte_navigation amcl_demo.launch
+```  
 
 Again, you need RVIZ to see whether it works. In addition to showing the map, you also want to see the lidar data, the global costmap and the local costmap. The initial position estimate is probably wrong. Make it approximately correct in RVIZ by clicking the "2D Pose Estimate" (green arrow) in the map. This will only work if in the left pane of RVIZ, Displays - Global Options - Fixed Frame is set to "map".
 
@@ -48,8 +58,13 @@ If you wish to use a different map name, use your custom map name in the map_sav
 ## Navigating
 A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RVIZ. Pay attention to the terminal from which amcl_demo was launched.  
 There is no simple command-line command to set navigation goals. Therefore, we created a python script with a service to set navigation goals.  
-`$ rosrun mirte_navigation move_to_server.py` will create the rosservice /move_to. Until the 'markers' team member is ready, the only navigation goals available are 'start' and 'test_location'. From a new terminal, the rosservice can be called with:  
-`$ rosservice call /move_to "location: 'start'"`   
+```bash
+rosrun mirte_navigation move_to_server.py
+```
+will create the rosservice /move_to. Until the 'markers' team member is ready, the only navigation goals available are 'start' and 'test_location'. From a new terminal, the rosservice can be called with:  
+```bash
+rosservice call /move_to "location: 'start'"
+```   
 
 It is recommended to check the file move_to_server.py and ask anything that is unclear to ChatGPT. Simply copy the entire code and ask. It will also assist with unexpected errors.
 
@@ -61,4 +76,11 @@ Try to follow the breadcrumb trail that starts in the file amcl_demo.launch and 
 - goal tolerances
 
 It is confusing which parameter value is actually used. Some yaml files contain the same parameters, and one may overwrite the other. To be sure that your edits take effect, use   
-`$ rosparam list`, search for your parameter, and check the value with `$ rosparam get /move_base/DWAPlannerROS/xy_goal_tolerance` or any other parameter you want to check.
+```bash
+rosparam list
+```
+Search for your parameter, and check the value with
+```bash
+rosparam get /move_base/DWAPlannerROS/xy_goal_tolerance
+```
+or any other parameter you want to check.
