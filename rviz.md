@@ -44,7 +44,7 @@ Through the 'add' button (encircled in the image above), try to add the followin
 
 Some things only work properly if you set under 'Global Options' (top left of screen) the parameter 'Fixed Frame' to 'map', but initially you should set 'Fixed Frame' to 'base_link'.
 
-Every time you select an item from a drop-down menu, hit the \<Enter\> key.
+Every time you select an item from a drop-down menu, hit the <kbd>Enter</kbd> key.
 
 ## Save configuration
 To prevent that you have to set all these things again, save the RVIZ config with File -> Save Config As. Navigate to a suitable location on the laptop, enter a name and click the Save button. The next time you start rviz, you can specify the configuration:
