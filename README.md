@@ -12,7 +12,7 @@ Welcome to the Mirte Master workshop! Maybe, you have just assembled your own Mi
 - your Mirte Master has a fresh image containing its basic software,
 - the battery is sufficiently well charged,
 - the arm is pointing more or less upward.
-*note: if the robot is already on, you cannot move the arm anymore. Don't try too hard, it might break.*
+*note: if the robot is already on, you cannot move the arm any more. Don't try too hard, it might break.*
 
 #### 1.1.2 Switching Mirte on
 - Switch it on, and
@@ -30,8 +30,8 @@ As long as ROS is running, it will check battery level and automatically shut do
 
 ### 1.2. Connecting
 
-#### 1.2.1 Connect to the Wifi
-The rear display shows a WIFI network name, `Mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`).
+#### 1.2.1 Connect to the WiFi
+The rear display shows a WiFi network name, `Mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`).
 
 > [!NOTE]  
 > You will lose internet access, unless your laptop has another (fi: wired) internet connection.
@@ -134,7 +134,7 @@ Not all required software is on the robot yet. Before fixing that, you need to f
 **The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from GitHub, for which we need an internet connection.
 
 ### 2.2. Connecting the robot to internet
-Make sure that there is a WIFI network that you have control over. For example, use your phone as a hotspot.
+Make sure that there is a WiFi network that you have control over. For example, use your phone as a hotspot.
 
 The following command will connect your robot (use the correct SSID and PASSWORD):
 
@@ -142,10 +142,10 @@ The following command will connect your robot (use the correct SSID and PASSWORD
 nmcli device wifi connect "SSID" password "PASSWORD"
 ```
 
-If this does not work, you can change the WIFI using the web interface at http://192.168.42.1, under the "Settings" tab. However, this page only lists the SSIDs that were available when the robot booted, so in the worst case you'll need to first turn on your WIFI network, reboot the robot, and then access this web interface.
+If this does not work, you can change the WiFi using the web interface at http://192.168.42.1, under the "Settings" tab. However, this page only lists the SSIDs that were available when the robot booted, so in the worst case you'll need to first turn on your WiFi network, reboot the robot, and then access this web interface.
 
-As soon as the robot is connected to the WIFI network, you will lose the direct connection to it. To get back in touch:
-- Connect your laptop to the same WIFI network
+As soon as the robot is connected to the WiFi network, you will lose the direct connection to it. To get back in touch:
+- Connect your laptop to the same WiFi network
 - Find the robot's IP address from your phone hotspot
 - Use this IP address in the browser
 
