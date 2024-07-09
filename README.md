@@ -225,7 +225,7 @@ Here are six workshop modules. The best way to work through them is to assign ea
 
 ### [4. Navigation](navigation.md)
 
-### [5. RVIZ](rviz.md) *requires laptop/desktop with ROS noetic*
+### [5. RViz](rviz.md) *requires laptop/desktop with ROS noetic*
 
 ### [6. Markers](markers.md)
 

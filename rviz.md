@@ -1,6 +1,6 @@
-# RVIZ
+# RViz
 
-This module must be executed on a computer that has ROS Noetic installed, because RVIZ requires graphics which Mirte Master cannot display.
+This module must be executed on a computer that has ROS Noetic installed, because RViz requires graphics which Mirte Master cannot display.
 
 ## 1. Connecting with ROS on the robot
 The robot will be designated as the "ROS Master". This means that the robot will coordinate all the communication with topics, services, etc. We must tell the external computer how to find the ROS Master. This requires two things that must be done both on the robot and on the external computer:  
@@ -14,7 +14,7 @@ The robot will be designated as the "ROS Master". This means that the robot will
 > these parameters must be set in each terminal that you open both in the robot as well as in the external computer
 
 We can partially test if it set correctly with  
-`rostopic list`, but the real testing is done below, when working with RVIZ.
+`rostopic list`, but the real testing is done below, when working with RViz.
 
 If it all works, then on the robot this can be automated by adding the following code at the end of the file ~/.bashrc
 
@@ -26,7 +26,7 @@ export ROS_IP=$ip_address
 export ROS_MASTER_URI=http://$ip_address:11311
 ```
 
-## 2. Launch RVIZ
+## 2. Launch RViz
 Before continuing, coordinate with your team mates. All rosnodes and launch files should be stopped, then in all terminals you need to run
 
 ```
@@ -41,7 +41,7 @@ rviz
 ```
 The following screen will pop up:
 
-![Empty RVIZ screen](./empty_rviz.png)  
+![Empty RViz screen](./empty_rviz.png)  
 
 ## 3. Show relevant things
 Through the 'add' button (encircled in the image above), try to add the following visualizations:
@@ -59,7 +59,7 @@ Some things only work properly if you set under 'Global Options' (top left of sc
 Every time you select an item from a drop-down menu, hit the <kbd>Enter</kbd> key.
 
 ## 4. Save configuration
-To prevent that you have to set all these things again, save the RVIZ config with <kbd>File -> Save Config As</kbd>. Navigate to a suitable location on the laptop, enter a name and click the <kbd>Save</kbd> button. The next time you start RVIZ, you can specify the configuration:
+To prevent that you have to set all these things again, save the RViz config with <kbd>File -> Save Config As</kbd>. Navigate to a suitable location on the laptop, enter a name and click the <kbd>Save</kbd> button. The next time you start RViz, you can specify the configuration:
 
 ```bash
 rviz -d /path/to/your/config/filename.rviz
