@@ -21,7 +21,7 @@ We prepared a ROS node that can store and retrieve poses. Start it with
 
 `$ rosrun mirte_workshop pose_manager.py`  
 
-This will provide two new services with you can test with"
+This will provide two new services with you can test with
 
 ```
 rosservice call /store_current_pose "{}"   
