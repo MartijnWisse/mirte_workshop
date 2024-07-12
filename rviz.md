@@ -11,7 +11,7 @@ The robot will be designated as the "ROS Master". This means that the robot will
 2. each should be set their own IP address:
 `$ export ROS_IP=192.168.yyy.yyy` with the IP address of each, obtainable with `$ hostname -I` in the terminal.  
 > [!NOTE]  
-> these parameters must be set in each terminal that you open both in the robot as well as in the external computer
+> These parameters must be set in each terminal that you open, both in the robot as well as in the external computer.
 
 We can partially test if it set correctly with  
 `rostopic list`, but the real testing is done below, when working with RVIZ.
