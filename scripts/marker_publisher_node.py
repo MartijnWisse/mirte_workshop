@@ -17,7 +17,7 @@ class StoredPointsVisualizer:
         self.package_path = self.rospack.get_path('mirte_workshop')
         self.locations_dir = os.path.join(self.package_path, "maps")
         self.previous_markers = set()
-        rospy.loginfo("Topic '/stored_points_markers' now available to show as MarkerArray in RVIZ. Edit the stored points in ./maps/stored_poses.yaml")
+        rospy.loginfo("Topic '/stored_points_markers' now available to show as MarkerArray in RViz. Edit the stored points in ./maps/stored_poses.yaml")
 
     def load_locations(self, map_file_name):
         locations_file_path = os.path.join(self.locations_dir, f'{map_file_name}.yaml')
