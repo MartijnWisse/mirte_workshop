@@ -7,14 +7,14 @@ In a terminal on the robot, run the following command:
 
 `$ rosrun mirte_workshop marker_publisher_node.py`  
 
-Collaborate with the 'rviz' team member to visualize the markers in RVIZ. You should see two green dots on the map, one called 'start' and the other called 'test_location'
+Collaborate with the 'RViz' team member to visualize the markers in RViz. You should see two green dots on the map, one called 'start' and the other called 'test_location'
 
 The locations of these dots are defined in the file `~/mirte_ws/src/mirte_workshop/maps/stored_poses.yaml`. Open the file and analyse its content. 
 
 - Orientations are represented as [quaternions](http://wiki.ros.org/tf2/Tutorials/Quaternions) which we will ignore for now,
 - Positions are represented as x,y,z coordinates where the height z will remain zero.
 
-Modify the position of the 'test_location' and check in RVIZ if the change matches your expectation. If you want, you can manually add additional poses. The file format is very strict, e.g. the wrong amount of spaces at the start of a line can already cause errors. 
+Modify the position of the 'test_location' and check in RViz if the change matches your expectation. If you want, you can manually add additional poses. The file format is very strict, e.g. the wrong amount of spaces at the start of a line can already cause errors. 
 
 ## Store and retrieve poses
 We prepared a ROS node that can store and retrieve poses. Start it with
@@ -28,7 +28,7 @@ rosservice call /store_current_pose "{}"
 rosservice call /get_stored_pose "pose_name: 'start'"   
 ```
 
-Test these services and check how they interact with the file `stored_poses.yaml`. All changes in the file should directly be reflected in RVIZ as well, as long as the 'marker_publisher_node.py' is running.
+Test these services and check how they interact with the file `stored_poses.yaml`. All changes in the file should directly be reflected in RViz as well, as long as the 'marker_publisher_node.py' is running.
 
 ## Test the move_to_server
 We prepared a ROS node that can tell the robot to go to one of the stored locations. Collaborate with the 'navigation' team member to prevent running the following command twice:

@@ -1,6 +1,6 @@
 # Navigation
 
-This module requires close collaboration with the 'RVIZ' module, to see the result of your work.
+This module requires close collaboration with the 'RViz' module, to see the result of your work.
 
 ## 1. Mapping
 We will use a standard package for mapping and navigation; gmapping and amcl. Let's tell the robot to create a map by driving around and storing the lidar data in a map:  
@@ -8,7 +8,7 @@ We will use a standard package for mapping and navigation; gmapping and amcl. Le
 roslaunch mirte_navigation gmapping.launch
 ``` 
 
-If this starts without errors, then it is working. Unfortunately, the Mirte Master is not equipped to show any graphics, it can only show text. Therefore, ask the RVIZ team member to add a map display and show the /map topic. In 'Global Options' (top left of screen) ask them to set the parameter 'Fixed Frame' to 'map'. You'll see a very incomplete map. Drive around with teleopkey to see the map grow. Don't turn too briskly to create a neat map. If the map is ruined, launch gmapping again.
+If this starts without errors, then it is working. Unfortunately, the Mirte Master is not equipped to show any graphics, it can only show text. Therefore, ask the RViz team member to add a map display and show the /map topic. In 'Global Options' (top left of screen) ask them to set the parameter 'Fixed Frame' to 'map'. You'll see a very incomplete map. Drive around with teleopkey to see the map grow. Don't turn too briskly to create a neat map. If the map is ruined, launch gmapping again.
 
 ## 2. Saving the map
 If the map looks good, save it *before shutting down gmapping*. In a new terminal, use the following command:  
@@ -45,7 +45,7 @@ With the successfully saved map and successfully installed Navigation stack, we 
 roslaunch mirte_navigation amcl_demo.launch
 ```  
 
-Again, you need RVIZ to see whether it works. In addition to showing the map, you also want to see the lidar data, the global costmap and the local costmap. The initial position estimate is probably wrong. Make it approximately correct in RVIZ by clicking the "2D Pose Estimate" (green arrow) in the map. This will only work if in the left pane of RVIZ, Displays - Global Options - Fixed Frame is set to "map".
+Again, you need RViz to see whether it works. In addition to showing the map, you also want to see the lidar data, the global costmap and the local costmap. The initial position estimate is probably wrong. Make it approximately correct in RViz by clicking the "2D Pose Estimate" (green arrow) in the map. This will only work if in the left pane of RViz, Displays - Global Options - Fixed Frame is set to "map".
 
 ## 5. Using a custom map name
 If you wish to use a different map name, use your custom map name in the map_saver command. To use this map for navigation, open the file `~/mirte_ws/src/mirte_navigation/launch/amcl_demo.launch` and change the map name in the line 
@@ -55,7 +55,7 @@ If you wish to use a different map name, use your custom map name in the map_sav
 ```
 
 ## 6. Navigating
-A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RVIZ. Pay attention to the terminal from which amcl_demo was launched.  
+A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RViz. Pay attention to the terminal from which amcl_demo was launched.  
 There is no simple command-line command to set navigation goals. Therefore, we created a python script with a service to set navigation goals.  
 ```bash
 rosrun mirte_navigation move_to_server.py
