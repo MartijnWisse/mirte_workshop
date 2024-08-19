@@ -13,8 +13,8 @@ Test which number corresponds to which joint, and which rotation direction is po
 
 The robot has two slots for packages on its back. Find the proper angle values for the pick-up arm configuration, so that Mirte Master can grasp the items off of its back in order to place them.
 
-## 2. Arm motions from python script
-To make the robot autonomous, the arm commands should come from code rather than from the command line. Let's try to make the simplest possible python script that can do this. It is up to you to create a new python file. We suggest calling it `arm_simple_script.py` and to put it in `~/mirte_ws/src/mirte_workshop/scripts`.   
+## 2. Arm motions from Python script
+To make the robot autonomous, the arm commands should come from code rather than from the command line. Let's try to make the simplest possible Python script that can do this. It is up to you to create a new Python file. We suggest calling it `arm_simple_script.py` and to put it in `~/mirte_ws/src/mirte_workshop/scripts`.   
 
 Copy the following content to the file:  
 
