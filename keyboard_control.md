@@ -20,7 +20,7 @@ $ rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray
 ```   
 Instead of having to type this over and over again (even though arrow-up makes this easier), we will publish the message simply by pressing the key '1'.  
 
-In the python code, the character 'q' is singled out for extra functionality. We will do the same for the character '1'. After the lines
+In the Python code, the character 'q' is singled out for extra functionality. We will do the same for the character '1'. After the lines
 
 ```python
 if key == 'q':
@@ -96,7 +96,7 @@ elif key == 'm':
 ```
 
 ## 5. Assist other team members 
-Check with your team members which topics, services, or other commands need to be tested and make `mirte_keyboard.py` useful for them. If there are too many key bindings to remember, let the python file print the available keys and their meanings on screen using the `rospy.loginfo('text goes here')` command. Likely examples to integrate:
+Check with your team members which topics, services, or other commands need to be tested and make `mirte_keyboard.py` useful for them. If there are too many key bindings to remember, let the Python file print the available keys and their meanings on screen using the `rospy.loginfo('text goes here')` command. Likely examples to integrate:
 - /gripper_close
 - /set_arm_home
 - /store_current_pose  
