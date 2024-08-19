@@ -56,7 +56,7 @@ If you wish to use a different map name, use your custom map name in the map_sav
 
 ## 6. Navigating
 A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RViz. Pay attention to the terminal from which amcl_demo was launched.  
-There is no simple command-line command to set navigation goals. Therefore, we created a python script with a service to set navigation goals.  
+There is no simple command-line command to set navigation goals. Therefore, we created a Python script with a service to set navigation goals.  
 ```bash
 rosrun mirte_navigation move_to_server.py
 ```
