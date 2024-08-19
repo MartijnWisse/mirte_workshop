@@ -2,12 +2,13 @@
 
 In this module, we will give names ('labels') to specific locations on the map. 
 
-## Poses
+## 1. Poses
 In a terminal on the robot, run the following command:
+```bash
+$ rosrun mirte_workshop marker_publisher_node.py
+```  
 
-`$ rosrun mirte_workshop marker_publisher_node.py`  
-
-Collaborate with the 'RViz' team member to visualize the markers in RViz. You should see two green dots on the map, one called 'start' and the other called 'test_location'
+Collaborate with the RViz team to visualize the markers in RViz. You should see two green dots on the map, one called 'start' and the other called 'test_location'
 
 The locations of these dots are defined in the file `~/mirte_ws/src/mirte_workshop/maps/stored_poses.yaml`. Open the file and analyse its content. 
 
@@ -16,46 +17,48 @@ The locations of these dots are defined in the file `~/mirte_ws/src/mirte_worksh
 
 Modify the position of the 'test_location' and check in RViz if the change matches your expectation. If you want, you can manually add additional poses. The file format is very strict, e.g. the wrong amount of spaces at the start of a line can already cause errors. 
 
-## Store and retrieve poses
+## 2. Store and retrieve poses
 We prepared a ROS node that can store and retrieve poses. Start it with
-
-`$ rosrun mirte_workshop pose_manager.py`  
+```bash
+$ rosrun mirte_workshop pose_manager.py
+```  
 
 This will provide two new services with you can test with
 
+```bash
+$ rosservice call /store_current_pose "{}"   
+$ rosservice call /get_stored_pose "pose_name: 'start'"   
 ```
-rosservice call /store_current_pose "{}"   
-rosservice call /get_stored_pose "pose_name: 'start'"   
+
+Test these services and check how they interact with the file `stored_poses.yaml`. All changes in the file should directly be reflected in RViz as well, as long as the `marker_publisher_node.py` is running.
+
+## 3. Test the `move_to_server`
+We prepared a ROS node that can tell the robot to go to one of the stored locations. Collaborate with the 'navigation' team to prevent running the following command twice:
+```bash
+$ rosrun mirte_navigation move_to_server.py
 ```
-
-Test these services and check how they interact with the file `stored_poses.yaml`. All changes in the file should directly be reflected in RViz as well, as long as the 'marker_publisher_node.py' is running.
-
-## Test the move_to_server
-We prepared a ROS node that can tell the robot to go to one of the stored locations. Collaborate with the 'navigation' team member to prevent running the following command twice:
-
-`$ rosrun mirte_navigation move_to_server.py`
 
 and test it with
+```bash
+$ rosservice call /move_to "location: 'start'"
+```
 
-`$ rosservice call /move_to "location: 'start'"`   
-
-
-## Connect the dots manually
+## 4. Connect the dots manually
 - Drive to a location of interest, 
 - use the command-line commands shown above to store that location,
 - edit the location name (e.g., call it 'desk_john')
-- amaze your team members by letting Mirte Master drive autonomously from 'start' to 'desk_john' and back through two rosservice calls
+- amaze your team members by letting Mirte Master drive autonomously from 'start' to 'desk_john' and back through two `rosservice` calls
 
-## Connect the dots programmatically
-It would be best to do this task together with the 'keyboard control' team member and directly implement things in their python file. However, to be able to work individually, the following script could be put into a new python file. Analyze the script to understand how it executes the same move_to motions, but now from a python script rather than from the command line. Let's call the following script `simple_navigation_script.py`.
+## 5. Connect the dots programmatically
+It would be best to do this task together with the 'keyboard control' team and directly implement things in their Python file. However, to be able to work individually, the following script could be put into a new Python file. Analyze the script to understand how it executes the same `move_to` motions, but now from a Python script rather than from the command line. Let's call the following script `simple_navigation_script.py`.
 
-```
+```python
 #!/usr/bin/env python3
 
 # ---- Load libraries ----
 # load the library with ROS functionality for Python
 import rospy      
-# load the specific service format required for move_to commands
+# load the specific service format required for 'move_to' commands
 from mirte_navigation.srv import MoveTo, MoveToRequest, MoveToResponse  # Import the custom service
 # load the message formats for checking the status of move_base
 from actionlib_msgs.msg import GoalStatusArray, GoalStatus
@@ -112,14 +115,17 @@ if __name__ == '__main__':
 
 ```
 
-To be able to rosrun this python file, we need to tell Linux that it is an executable file. Change directory into the folder of the file, and type
+To be able to `rosrun` this Python file, we need to tell Linux that it is an executable file. Change directory into the folder of the file, and type
 
-```
-chmod +x simple_navigation_script.py
+```bash
+$ chmod +x simple_navigation_script.py
 ```
 
-Make sure that the robot cannot drive off of a table, and execute your script with:
+> [!IMPORTANT]  
+> Make sure that the robot cannot drive off of a table!
 
-```
-rosrun mirte_workshop simple_navigation_script.py
+Execute your script with:
+
+```bash
+$ rosrun mirte_workshop simple_navigation_script.py
 ```
