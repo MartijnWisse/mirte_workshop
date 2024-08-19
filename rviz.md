@@ -11,14 +11,14 @@ The robot will be designated as the "ROS Master". This means that the robot will
 2. each should be set their own IP address:
 `$ export ROS_IP=192.168.yyy.yyy` with the IP address of each, obtainable with `$ hostname -I` in the terminal.  
 > [!NOTE]  
-> These parameters must be set in each terminal that you open, both in the robot as well as in the external computer.
+> These parameters must be set in each terminal that you open, both in the robot and in the external computer.
 
 We can partially test if it set correctly with  
 `rostopic list`, but the real testing is done below, when working with RViz.
 
 If it all works, then on the robot this can be automated by adding the following code at the end of the file ~/.bashrc
 
-```
+```bash
 ip_address=$(hostname -I | awk '{print $1}')
 echo "ROS_IP set to: $ip_address"
 echo "ROS_MASTER_URI set to: http://$ip_address:11311"
@@ -27,17 +27,17 @@ export ROS_MASTER_URI=http://$ip_address:11311
 ```
 
 ## 2. Launch RViz
-Before continuing, coordinate with your team mates. All rosnodes and launch files should be stopped, then in all terminals you need to run
+Before continuing, coordinate with your team mates. All `rosnodes` and launch files should be stopped, then in all terminals you need to run
 
-```
-source ~/.bashrc
+```bash
+$ source ~/.bashrc
 ```
 
 This will make sure that the `ROS_MASTER_URI` and `ROS_IP` are correctly set in all terminals. Now you can `roslaunch` the `mirte_workshop.launch` file again and everyone can resume their work.
 
 Then, the easiest step of all; in the external computer, type
 ```bash
-rviz
+$ rviz
 ```
 The following screen will pop up:
 
@@ -52,16 +52,16 @@ Through the 'add' button (encircled in the image above), try to add the followin
 | Laserscan | /scan | shows the lidar sensor data |
 | TF | Frames 'base_link' and 'map' | shows the coordinate frames |
 | Image | /camera/color/image_raw (Transport Hint 'compressed') | shows the front camera image |
-| MarkerArray | /stored_points_markers | Only works if 'marker_publisher_node.py' is running. Shows stored locations
+| MarkerArray | /stored_points_markers | Only works if `marker_publisher_node.py` is running. Shows stored locations
 
-Some things only work properly if you set under 'Global Options' (top left of screen) the parameter 'Fixed Frame' to 'map', but initially you should set 'Fixed Frame' to 'base_link'.
+Some things only work properly if you set the parameter 'Fixed Frame' to 'map', under 'Global Options' (top left of screen). However, initially you should set 'Fixed Frame' to 'base_link'.
 
 Every time you select an item from a drop-down menu, hit the <kbd>Enter</kbd> key.
 
 ## 4. Save configuration
-To prevent that you have to set all these things again, save the RViz config with <kbd>File -> Save Config As</kbd>. Navigate to a suitable location on the laptop, enter a name and click the <kbd>Save</kbd> button. The next time you start RViz, you can specify the configuration:
+To prevent having to set all these things again, save the RViz config with *File* -> *Save Config As*. Navigate to a suitable location on the laptop, enter a name and click the *Save* button. The next time you start RViz, you can specify the configuration:
 
 ```bash
-rviz -d /path/to/your/config/filename.rviz
+$ rviz -d /path/to/your/config/filename.rviz
 ```
 
