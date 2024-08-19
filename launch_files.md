@@ -43,7 +43,7 @@ By the way, the `rosrun` command is still better than
 ```bash
 $ python3 arm_server.py
 ```
-For `rosrun` and `roslaunch` to work, you must tell Linux that your python files are executable:  
+For `rosrun` and `roslaunch` to work, you must tell Linux that your Python files are executable:  
 ```bash
 $ chmod +x python_file_name.py
 ``` 
