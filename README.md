@@ -65,7 +65,7 @@ Once you have a terminal, let's refresh your linux skills. For example:
 | `ls` | shows the list of files and folders inside the current folder |
 | `cd folder_name` | will change to folder_name |
 | `cd ..` | will change one folder up |
-| `python3` | will start an interactive python session, exit with `>>> exit()` |
+| `python3` | will start an interactive Python session, exit with `>>> exit()` |
 | <kbd>Tab</kbd> | will autocomplete your command, very useful to prevent typos |
 
 Let's test that ROS is already running. For example:
@@ -193,7 +193,7 @@ Let's test if it all works with the very underwhelming command
 rosrun mirte_workshop mirte_keyboard.py
 ```
 
-It works if there are no errors, and if you see the characters that you type, back on the screen. Check the python code to find out which new topic has been created; you can see the same characters when you echo that topic.
+It works if there are no errors, and if you see the characters that you type, back on the screen. Check the Python code to find out which new topic has been created; you can see the same characters when you echo that topic.
 
 ### 2.5. Launching mirte_workshop specific configuration
 When you turned on the robot, ROS was automatically started. However:
