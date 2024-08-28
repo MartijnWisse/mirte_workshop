@@ -39,7 +39,7 @@ Connect your the laptop to the same network as the robot.
 **Password**: `martijn2024`  
 
 #### 1.2.2 Navigate to the control interface
-Open a browser on your laptop and go to the website "http://192.168.XXX.YYY:8000" (See the back display for the exact IP-adress)
+Open a browser on your laptop and go to the website "http://192.168.XXX.YYY:8000/?folder=/home/mirte/mirte_ws" (See the back display for the exact IP-adress)
 
 **Username**: `mirte`  
 **Password**: `martijn2024`  
