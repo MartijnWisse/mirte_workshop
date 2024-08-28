@@ -31,16 +31,18 @@ As long as ROS is running, it will check battery level and automatically shut do
 ### 1.2. Connecting
 
 #### 1.2.1 Connect to the WiFi
-The rear display shows a WiFi network name, `Mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`).
+<!-- Needs to be gone -->
+<!-- The rear display shows a WiFi network name, `Mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`). -->
+Connect your the laptop to the same network as the robot.
 
-> [!NOTE]  
-> You will lose internet access, unless your laptop has another (fi: wired) internet connection.
+**SSID**: `Martijn`
+**Password**: `martijn2024`  
 
 #### 1.2.2 Navigate to the control interface
-Open a browser on your laptop and go to the website "http://192.168.42.1:8000"
+Open a browser on your laptop and go to the website "http://192.168.XXX.YYY:8000" (See the back display for the exact IP-adress)
 
 **Username**: `mirte`  
-**Password**: `mirte_mirte`  
+**Password**: `martijn2024`  
 
 You should see the VS Code web editor, a powerful tool to program robots.
 
@@ -49,13 +51,8 @@ You should see the VS Code web editor, a powerful tool to program robots.
 
 ### 1.3. First login
 
-In the VS Code web editor, open a new terminal. One team member should change the default password through the command
-`passwd`
-
-> [!NOTE]  
-> In Linux, you don't see what you type in the password field, this is for improved security.
-
-Carefully read the response on the screen. Share the new password with your team members. They can now log in simultaneously from their own laptops.
+In the VS Code web editor, open a new terminal. You can try doing running a `neofetch` to get some system information.
+Make sure your whole group is connected.
 
 ### 1.4. First Linux and ROS tests
 Once you have a terminal, let's refresh your linux skills. For example:
@@ -114,79 +111,8 @@ Use the <kbd>x</kbd> and <kbd>c</kbd> keys to tone down linear velocity to `0.3`
 Drive, and in a different terminal check out `rostopic echo /mobile_base_controller/cmd_vel`
 
 ## 2. Getting the workshop software on the robot
-### 2.1. Folder structure
-Not all required software is on the robot yet. Before fixing that, you need to familiarize yourself with the overall folder structure. Browse folders in the left panel of VS Code. The important part of the structure is:
 
-```
-📁 /home
-└── 📁 mirte
-    └── 📁 mirte_ws
-        ├── 📁 build
-        ├── 📁 devel
-        └── 📁 src
-            ├── 📁 mirte_navigation
-            ├── 📁 mirte_workshop
-            ├── 📁 mirte_ros_packages
-            ├── 📁 ros_astra_camera
-            ├── 📁 rplidar_ros
-```
-
-**The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from GitHub, for which we need an internet connection.
-
-### 2.2. Connecting the robot to internet
-Make sure that there is a WiFi network that you have control over. For example, use your phone as a hotspot.
-
-The following command will connect your robot (use the correct SSID and PASSWORD):
-
-```bash
-nmcli device wifi connect "SSID" password "PASSWORD"
-```
-
-If this does not work, you can change the WiFi using the web interface at http://192.168.42.1, under the "Settings" tab. However, this page only lists the SSIDs that were available when the robot booted, so in the worst case you'll need to first turn on your WiFi network, reboot the robot, and then access this web interface.
-
-As soon as the robot is connected to the WiFi network, you will lose the direct connection to it. To get back in touch:
-- Connect your laptop to the same WiFi network
-- Find the robot's IP address from your phone hotspot
-- Use this IP address in the browser
-
-### 2.3. Cloning the GitHub repositories
-
-#### 2.3.1 Clone this repository
-You are reading this on GitHub. If you scroll up, there is a list of folders and files that together are the package `mirte_workshop`. With the green button that says `<> Code`, copy the https address of the repository. Then use the following commands to copy it onto your robot:
-
-```bash
-cd ~/mirte_ws/src
-git clone <...>
-```
-
-Replace `<...>` with the https address of the repository. Paste it using a right mouse click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd>.
-
-
-#### 2.3.2 Clone the navigation repository
-Find the repository [MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) on GitHub and clone that onto the robot as well.
-
-
-### 2.4. Compiling new packages
-
-#### 2.4.1 Compile
-Whenever you git clone a new package onto the robot, it needs to be compiled so that ROS can find and use it. For example:
-
-```bash
-cd ~/mirte_ws
-catkin build mirte_navigation
-catkin build mirte_workshop
-```
-
-#### 2.4.2 Refresh Environment
-Now, in any new terminal, ROS will know how to find the new folders and files. But not in terminals that already exist. To tell them, in each existing terminal you need to type:
-
-```bash
-source ~/mirte_ws/devel/setup.bash
-```
-
-Alternatively, you can close the terminal(s) and open new ones.
-
-#### 2.4.3 Testing
+### 2.1 Testing
 Let's test if it all works with the very underwhelming command
 
 ```bash
@@ -195,7 +121,7 @@ rosrun mirte_workshop mirte_keyboard.py
 
 It works if there are no errors, and if you see the characters that you type, back on the screen. Check the Python code to find out which new topic has been created; you can see the same characters when you echo that topic.
 
-### 2.5. Launching mirte_workshop specific configuration
+### 2.2. Launching mirte_workshop specific configuration
 When you turned on the robot, ROS was automatically started. However:
 - This is not exactly the right configuration for the workshop, and
 - It doesn't show screen output, so we don't know what is going on
@@ -215,17 +141,23 @@ roslaunch mirte_workshop mirte_workshop.launch
 The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and <kbd>Ctrl</kbd>+<kbd>c</kbd> will stop ROS. Therefore, open new terminals to run additional commands.
 
 ## 3. Get all the components ready
-Here are six workshop modules. The best way to work through them is to assign each module to a different team member.
+Here are six workshop modules. The best way to work through them is to assign each module cluster to a different duo of team members.
 
 ### [1. Arm and gripper](arm_and_gripper.md)
+
+---
 
 ### [2. Launch files](launch_files.md)
 
 ### [3. Keyboard control](keyboard_control.md)
 
-### [4. Navigation](navigation.md)
+----
 
-### [5. RViz](rviz.md) *requires laptop/desktop with ROS noetic*
+### [4. RViz](rviz.md) *requires laptop/desktop with ROS noetic*
+
+----
+
+### [5. Navigation](navigation.md)
 
 ### [6. Markers](markers.md)
 
