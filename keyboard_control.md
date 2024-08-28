@@ -77,6 +77,7 @@ The service is now ready to be used when a specific key is pressed, let's use 'g
 
 ```python
 elif key == 'g':
+    # Keep the servo angle range between (-0.5, 0.5) radians
     rospy.loginfo(f"g = gripper servo to angle 0.2")
     set_gripper_angle(0.2)
 ```
