@@ -71,13 +71,16 @@ $ python3 arm_simple_script.py
 
 Now, you could start editing this file to prepare an entire choreography for the arm! With while-loops you can make it run forever, until stopped with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
+> [!WARNING]  
+> rospy catches <kbd>Ctrl</kbd>+<kbd>c</kbd>, so use ``` not rospy.is_shutdown() ``` as while condition.
+
 ## 3. Arm motions from service calls
 For easy integration with the rest of the robot software, you may want to create ROS services. This will create a small information detour; the service call will effectively publish the same message as we published directly in the code above. But it is still instructive to check out how to create services.
 
 We (well, ChatGPT) prepared an example file for you, `~/mirte_ws/src/mirte_workshop/arm_server.py`.  
 To start it up, use
-```bash
-$ rosrun mirte_workshop arm_server.py
+```console
+rosrun mirte_workshop arm_server.py
 ```  
 It will not actually do anything until a service is requested. In a new terminal,  
 ```bash
