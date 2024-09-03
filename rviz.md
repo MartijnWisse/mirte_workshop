@@ -3,39 +3,19 @@
 This module must be executed on a computer that has ROS Noetic installed, because RViz requires graphics which Mirte Master cannot display.
 
 ## 1. Connecting with ROS on the robot
-The robot will be designated as the "ROS Master". This means that the robot will coordinate all the communication with topics, services, etc. We must tell the external computer how to find the ROS Master. This requires two things that must be done both on the robot and on the external computer:  
+The robot and the ROS Noetic computer will communicate over TCP/IP, which requires them to know each other's IP address. Hopefully, these are set correctly by the workshop hosts. It can be checked as follows.
 
-1. both of them should be set the same ROS Master
-`export ROS_MASTER_URI=http://192.168.xxx.xxx:11311/` with the IP address of the robot (shown on the little screen on the robot, or `hostname -I` in a robot terminal)  
+1. both of them should have the same ROS Master address, which should be the IP address of the robot with port 11311:
+`echo $ROS_MASTER_URI`
 
 2. each should be set their own IP address:
-`export ROS_IP=192.168.yyy.yyy` with the IP address of each, obtainable with `hostname -I` in the terminal.  
-> [!NOTE]  
-> These parameters must be set in each terminal that you open, both in the robot and in the external computer.
+`echo $ROS_IP`
 
-We can partially test if it set correctly with  
-`rostopic list`, but the real testing is done below, when working with RViz.
-
-If it all works, then on the robot this can be automated by adding the following code at the end of the file ~/.bashrc
-
-```console
-ip_address=$(hostname -I | awk '{print $1}')
-echo "ROS_IP set to: $ip_address"
-echo "ROS_MASTER_URI set to: http://$ip_address:11311"
-export ROS_IP=$ip_address
-export ROS_MASTER_URI=http://$ip_address:11311
-```
+If these settings seem incorrect, ask for assistance.
 
 ## 2. Launch RViz
-Before continuing, coordinate with your team mates. All `rosnodes` and launch files should be stopped, then in all terminals you need to run
 
-```console
-source ~/.bashrc
-```
-
-This will make sure that the `ROS_MASTER_URI` and `ROS_IP` are correctly set in all terminals. Now you can `roslaunch` the `mirte_workshop.launch` file again and everyone can resume their work.
-
-Then, the easiest step of all; in the external computer, type
+In a terminal in the ROS Noetic computer, type
 ```console
 rviz
 ```
@@ -64,4 +44,6 @@ To prevent having to set all these things again, save the RViz config with *File
 ```console
 rviz -d /path/to/your/config/filename.rviz
 ```
+## 5. Help 'navigation' team member(s)
 
+Familiarize yourself with the RViz interface. Learn how to recognize the location of the robot (from the TF frames), enlarge the size of the lidar sensor data, rotate and zoom the map, etcetera. Then, assist the team members working on 'navigation' and 'markers'
