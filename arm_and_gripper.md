@@ -125,7 +125,7 @@ You now have all the tools you need to make an integrated service. For example, 
 - opens the gripper
 - brings the arm to the home position
 
-You can add this service to the ```arm_server.py``` that you previously edited. To call a service you can use ```rospy.ServiceProxy("/<service_name>", Trigger)()```. The packages need to be moved carefully, so add some ```time.sleep(x)``` between the movements.
+You can add this service to the ```arm_server.py``` that you previously edited. To call a service you can use ```rospy.ServiceProxy("/<service_name>", Trigger)()```. The packages need to be moved carefully, so add some ```rospy.sleep(x)``` between the movements.
 
 
 Discuss with your team members what kind of services your application requires.

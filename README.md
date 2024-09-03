@@ -130,7 +130,7 @@ Now start the right one with:
 roslaunch mirte_workshop mirte_workshop.launch
 ```
 > [!WARNING]  
-> This needs to be done once on every robot (coordinate!) and at every reboot.
+> This needs to be done once on every robot (coordinate!) and at every robot reboot.
 
 The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and <kbd>Ctrl</kbd>+<kbd>c</kbd> will stop ROS. Therefore, open new terminals to run additional commands.
 
