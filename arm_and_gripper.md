@@ -4,8 +4,8 @@ Let's make Mirte's arm operational!
 
 ## 1. Arm motions from command-line
 There are four arm joints. They are controlled by publishing on the topic `/arm/joint_position_controller/command`, e.g.  
-```bash
-$ rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "{data: [0, 0, 0, 0]}"
+```console
+rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "{data: [0, 0, 0, 0]}"
 ```
 will put the arm straight up.   
 
@@ -64,9 +64,9 @@ rospy.loginfo('Moving to position 2')
 ```
 
 Save the file, move to the script directory and test if it works with:
-```bash
-$ cd ~/mirte_ws/src/mirte_workshop/scripts
-$ python3 arm_simple_script.py
+```console
+cd ~/mirte_ws/src/mirte_workshop/scripts
+python3 arm_simple_script.py
 ```  
 
 Now, you could start editing this file to prepare an entire choreography for the arm! With while-loops you can make it run forever, until stopped with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
@@ -83,9 +83,9 @@ To start it up, use
 rosrun mirte_workshop arm_server.py
 ```  
 It will not actually do anything until a service is requested. In a new terminal,  
-```bash
-$ cd ~/mirte
-$ rosservice call /set_arm_front "{}"
+```console
+cd ~/mirte
+rosservice call /set_arm_front "{}"
 ```
 will call the service and make the arm move.
 
@@ -94,8 +94,8 @@ It is recommended to ask ChatGPT for explanations of the code. Simply copy the c
 
 ## 4. Gripper servo
 The gripper servo motor can be called directly with the following service call  
-```bash
-$ rosservice call /mirte/set_servoGripper_servo_angle "angle: 0.0"
+```console
+rosservice call /mirte/set_servoGripper_servo_angle "angle: 0.0"
 ```   
 > [!NOTE]  
 > Similar ROS services exist for the other joints, but the arm controller also uses these same services. Your service call will be overruled by the arm controller.
@@ -104,13 +104,13 @@ Find out what the maximum and minimum values for the gripper angle are, i.e. ful
 
 ## 5. Gripper service with success feedback
 To know whether a grasp was successful, we created the example node `~/mirte_ws/src/mirte_workshop/gripper_server.py`   
-```bash
-$ rosrun mirte_workshop gripper_server.py
+```console
+rosrun mirte_workshop gripper_server.py
 ```
  will start this node. It is instructive to check the code.  
 To use the new services, try  
-```bash
-$ rosservice call /gripper_open "{}"` or `$ rosservice call /gripper_close "{}"
+```console
+rosservice call /gripper_open "{}"` or `rosservice call /gripper_close "{}"
 ```  
 You may have to modify the maximum and minimum values for the gripper angle, they differ from robot to robot.
 

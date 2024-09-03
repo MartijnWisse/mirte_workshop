@@ -4,7 +4,7 @@ This module requires close collaboration with the 'RViz' module, to see the resu
 
 ## 1. Mapping
 We will use a standard package for mapping and navigation; gmapping and amcl. Let's tell the robot to create a map by driving around and storing the lidar data in a map:  
-```bash
+```console
 roslaunch mirte_navigation gmapping.launch
 ``` 
 
@@ -12,7 +12,7 @@ If this starts without errors, then it is working. Unfortunately, the Mirte Mast
 
 ## 2. Saving the map
 If the map looks good, save it *before shutting down gmapping*. In a new terminal, use the following command:  
-```bash
+```console
 rosrun map_server map_saver -f /home/mirte/mirte_ws/src/mirte_workshop/maps/default
 ```  
 
@@ -23,25 +23,25 @@ Now, close gmapping with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 ## 3. Installing the Navigation Stack
 The following command will fail (try it):
 
-```bash
+```console
 roslaunch mirte_navigation amcl_demo.launch
 ```  
 
 It will complain that the 'local_dwa_planner' doesn't exist. The missing component is part of the standard [Navigation Stack](http://wiki.ros.org/navigation), which we'll need on our Mirte Master. Type the following commands, and note that they each take some time to process:
 
-```bash
+```console
 sudo apt-get update
 sudo apt-get install ros-noetic-navigation
 ```
 
 You may need to inform each of your terminals about the newly installed package:
-```bash
+```console
 source ~/mirte_ws/devel/setup.bash
 ``` 
 
 ## 4. Localizing with a saved map
 With the successfully saved map and successfully installed Navigation stack, we can now run  
-```bash
+```console
 roslaunch mirte_navigation amcl_demo.launch
 ```  
 
@@ -57,11 +57,11 @@ If you wish to use a different map name, use your custom map name in the map_sav
 ## 6. Navigating
 A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RViz. Pay attention to the terminal from which amcl_demo was launched.  
 There is no simple command-line command to set navigation goals. Therefore, we created a Python script with a service to set navigation goals.  
-```bash
+```console
 rosrun mirte_navigation move_to_server.py
 ```
 will create the rosservice /move_to. Until the 'markers' team member is ready, the only navigation goals available are 'start' and 'test_location'. From a new terminal, the rosservice can be called with:  
-```bash
+```console
 rosservice call /move_to "location: 'start'"
 ```   
 
@@ -75,11 +75,11 @@ Try to follow the breadcrumb trail that starts in the file `amcl_demo.launch` an
 - goal tolerances
 
 It is confusing which parameter value is actually used. Some yaml files contain the same parameters, and one may overwrite the other. To be sure that your edits take effect, use   
-```bash
+```console
 rosparam list
 ```
 Search for your parameter, and check the value with
-```bash
+```console
 rosparam get /move_base/DWAPlannerROS/xy_goal_tolerance
 ```
 or any other parameter you want to check.

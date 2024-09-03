@@ -84,7 +84,7 @@ Driving is controlled through the topic `/mobile_base_controller/cmd_vel`.
 Try the following command.
 After pressing <kbd>Tab</kbd> twice, change the `linear.x` value to `0.3` and press <kbd>Enter</kbd> to publish the message:
 
-```bash
+```console
 rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>
 ```
 
@@ -93,7 +93,7 @@ Stop the publisher with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 The robot keeps driving if the message keeps being repeated, with the `-r` (`--rate`) option.
 After pressing <kbd>Tab</kbd> twice, change the `x` value to `0.3` again and press <kbd>Enter</kbd> to publish the message:
 
-```bash
+```console
 rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>
 ```
 
@@ -115,7 +115,7 @@ Drive, and in a different terminal check out `rostopic echo /mobile_base_control
 ### 2.1 Testing
 Let's test if it all works with the very underwhelming command
 
-```bash
+```console
 rosrun mirte_workshop mirte_keyboard.py
 ```
 
@@ -128,13 +128,13 @@ When you turned on the robot, ROS was automatically started. However:
 
 Stop the invisible ROS instance:
 
-```bash
+```console
 sudo service mirte-ros stop
 ```
 
 Now start the right one with:
 
-```bash
+```console
 roslaunch mirte_workshop mirte_workshop.launch
 ```
 

@@ -4,8 +4,8 @@ In this module, we will give names ('labels') to specific locations on the map.
 
 ## 1. Poses
 In a terminal on the robot, run the following command:
-```bash
-$ rosrun mirte_workshop marker_publisher_node.py
+```console
+rosrun mirte_workshop marker_publisher_node.py
 ```  
 
 Collaborate with the RViz team to visualize the markers in RViz. You should see two green dots on the map, one called 'start' and the other called 'test_location'
@@ -19,28 +19,28 @@ Modify the position of the 'test_location' and check in RViz if the change match
 
 ## 2. Store and retrieve poses
 We prepared a ROS node that can store and retrieve poses. Start it with
-```bash
-$ rosrun mirte_workshop pose_manager.py
+```console
+rosrun mirte_workshop pose_manager.py
 ```  
 
 This will provide two new services with you can test with
 
-```bash
-$ rosservice call /store_current_pose "{}"   
-$ rosservice call /get_stored_pose "pose_name: 'start'"   
+```console
+rosservice call /store_current_pose "{}"   
+rosservice call /get_stored_pose "pose_name: 'start'"   
 ```
 
 Test these services and check how they interact with the file `stored_poses.yaml`. All changes in the file should directly be reflected in RViz as well, as long as the `marker_publisher_node.py` is running.
 
 ## 3. Test the `move_to_server`
 We prepared a ROS node that can tell the robot to go to one of the stored locations. Collaborate with the 'navigation' team to prevent running the following command twice:
-```bash
-$ rosrun mirte_navigation move_to_server.py
+```console
+rosrun mirte_navigation move_to_server.py
 ```
 
 and test it with
-```bash
-$ rosservice call /move_to "location: 'start'"
+```console
+rosservice call /move_to "location: 'start'"
 ```
 
 ## 4. Connect the dots manually
@@ -117,8 +117,8 @@ if __name__ == '__main__':
 
 To be able to `rosrun` this Python file, we need to tell Linux that it is an executable file. Change directory into the folder of the file, and type
 
-```bash
-$ chmod +x simple_navigation_script.py
+```console
+chmod +x simple_navigation_script.py
 ```
 
 > [!IMPORTANT]  
@@ -126,6 +126,6 @@ $ chmod +x simple_navigation_script.py
 
 Execute your script with:
 
-```bash
-$ rosrun mirte_workshop simple_navigation_script.py
+```console
+rosrun mirte_workshop simple_navigation_script.py
 ```

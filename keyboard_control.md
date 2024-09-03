@@ -4,19 +4,19 @@ With `teleopkey.launch`, we could easily test the driving functionality. Now, we
 
 ## 1. Simple keyboard input node
 We created a simple file to get started.  
-```batch
-$ rosrun mirte_workshop mirte_keyboard.py
+```console
+rosrun mirte_workshop mirte_keyboard.py
 ```
 will start the file.   
 Presently, it will publish any pressed key in the topic `/key_press`. You can check this in another terminal with
-```bash
-$ rostopic echo /key_press
+```console
+rostopic echo /key_press
 ```
 
 ## 2. Testing topic publishing
 The arm could be moved with the following message:  
-```bash
-$ rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "{data: [0, 0.5, 0, 0]}"
+```console
+rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "{data: [0, 0.5, 0, 0]}"
 ```   
 Instead of having to type this over and over again (even though arrow-up makes this easier), we will publish the message simply by pressing the key '1'.  
 
@@ -56,8 +56,8 @@ It is advisable to ask ChatGPT anything that isn't clear to you in the code. Jus
 
 ## 3. Testing service calls
 Our file can also be useful to quickly test (new) ROS services. Instead of the command-line service call to move the gripper servo,  
-```bash
-$ rosservice call /mirte/set_servoGripper_servo_angle "angle: 0.2"
+```console
+rosservice call /mirte/set_servoGripper_servo_angle "angle: 0.2"
 ```
 we will call the service with the press of a key.  
 
@@ -84,8 +84,8 @@ elif key == 'g':
 
 ## 4. Testing command-line commands
 Any other command-line command can also be tested through the press of a key. For example, a team member will save maps with:  
-```bash
-$ rosrun map_server map_saver -f /home/mirte/mirte_ws/src/mirte_workshop/maps/default
+```console
+rosrun map_server map_saver -f /home/mirte/mirte_ws/src/mirte_workshop/maps/default
 ```  
 
 We will let the character 'm' execute this command-line command. At the appropriate place, add to `mirte_keyboard.py`:  
