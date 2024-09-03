@@ -10,6 +10,8 @@ rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "
 will put the arm straight up.   
 
 Test which number corresponds to which joint, and which rotation direction is positive. It is recommended to make a good drawing.
+> [!WARNING]  
+> The arm can only rotate ~180° at the first servo, so it needs to pick up the packages some other way.
 
 The robot has two slots for packages on its back. Find the proper angle values for the pick-up arm configuration, so that Mirte Master can grasp the items off of its back in order to place them.
 
@@ -122,6 +124,9 @@ You now have all the tools you need to make an integrated service. For example, 
 - brings the arm to the front
 - opens the gripper
 - brings the arm to the home position
+
+You can add this service to the ```arm_server.py``` that you previously edited. To call a service you can use ```rospy.ServiceProxy("/<service_name>", Trigger)()```. The packages need to be moved carefully, so add some ```time.sleep(x)``` between the movements.
+
 
 Discuss with your team members what kind of services your application requires.
 

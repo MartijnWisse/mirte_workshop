@@ -7,21 +7,12 @@ Welcome to the Mirte Master workshop! Maybe, you have just assembled your own Mi
 
 ## 1. Getting started
 ### 1.1 Preparations
-
-#### 1.1.1 Before switching on the robot, make sure that:
-- your Mirte Master has a fresh image containing its basic software,
-- the battery is sufficiently well charged,
-- the arm is pointing more or less upward.
-*note: if the robot is already on, you cannot move the arm any more. Don't try too hard, it might break.*
-
-#### 1.1.2 Switching Mirte on
-- Switch it on, and
-- wait until text appears on the little rear display.
-- As long as the robot doesn't need to drive, keep it connected to the charger.
+ 
 
 #### 1.1.3 Battery Safety WARNING
 **Very important**:
-The battery will break when over-discharged.
+- The battery will break when over-discharged.
+- As long as the robot doesn't need to drive, keep it connected to the charger.
 
 > [!WARNING]  
 > Never let the battery percentage go below 10%.
@@ -51,7 +42,7 @@ You should see the VS Code web editor, a powerful tool to program robots.
 
 ### 1.3. First login
 
-In the VS Code web editor, open a new terminal. You can try doing running a `neofetch` to get some system information.
+In the VS Code web editor, open a new terminal(<kbd>Ctrl</kbd>+<kbd>j</kbd>). You can try doing running a `neofetch` to get some system information.
 Make sure your whole group is connected.
 
 ### 1.4. First Linux and ROS tests
@@ -80,6 +71,7 @@ Driving is controlled through the topic `/mobile_base_controller/cmd_vel`.
 
 > [!CAUTION]  
 > Lift up the robot before trying, so that it doesn't drive off the table!
+> Multiple commands at the same time might make it move strangely.
 
 Try the following command.
 After pressing <kbd>Tab</kbd> twice, change the `linear.x` value to `0.3` and press <kbd>Enter</kbd> to publish the message:
@@ -110,7 +102,7 @@ Use the <kbd>x</kbd> and <kbd>c</kbd> keys to tone down linear velocity to `0.3`
 
 Drive, and in a different terminal check out `rostopic echo /mobile_base_controller/cmd_vel`
 
-## 2. Getting the workshop software on the robot
+## 2. Running the workshop software on the robot
 
 ### 2.1 Testing
 Let's test if it all works with the very underwhelming command
@@ -137,6 +129,8 @@ Now start the right one with:
 ```console
 roslaunch mirte_workshop mirte_workshop.launch
 ```
+> [!WARNING]  
+> This needs to be done once on every robot (coordinate!) and at every reboot.
 
 The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and <kbd>Ctrl</kbd>+<kbd>c</kbd> will stop ROS. Therefore, open new terminals to run additional commands.
 
