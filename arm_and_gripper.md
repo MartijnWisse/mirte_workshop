@@ -136,6 +136,13 @@ colcon build --symlink-install --packages-select mirte_workshop
 source install/setup.bash
 ```
 
+Now, ROS2 can find and run the file, which you can test with
+
+```bash
+ros2 run mirte_workshop arm_simple_script
+```
+
+
 ## 4. Arm motions from service calls
 For easy integration with the rest of the robot software, you may want to create ROS services. This will create a small information detour; the service call will effectively publish the same message as we published directly in the code above. But it is still instructive to check out how to create services.
 
