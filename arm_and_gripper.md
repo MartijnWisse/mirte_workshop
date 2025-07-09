@@ -5,7 +5,7 @@ Let's make Mirte's arm operational!
 ## 1. Arm motions from command-line
 There are four arm joints. They are controlled by publishing on the topic `/arm/joint_position_controller/command`, e.g.  
 ```bash
-$ rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "{data: [0, 0, 0, 0]}"
+rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "{data: [0, 0, 0, 0]}"
 ```
 will put the arm straight up.   
 
@@ -109,8 +109,8 @@ if __name__ == '__main__':
 
 Save the file, move to the script directory and test if it works with:
 ```bash
-$ cd ~/mirte_ws/src/mirte_workshop/scripts
-$ python3 arm_simple_script.py
+cd ~/mirte_ws/src/mirte_workshop/scripts
+python3 arm_simple_script.py
 ```  
 
 Now, you could start editing this file to prepare an entire choreography for the arm! With while-loops you can make it run forever, until stopped with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
@@ -149,11 +149,11 @@ For easy integration with the rest of the robot software, you may want to create
 We (well, ChatGPT) prepared an example file for you, `~/mirte_ws/src/mirte_workshop/mirte_workshop/arm_server.py`.  
 To start it up, use
 ```bash
-$ ros2 run mirte_workshop arm_server
+ros2 run mirte_workshop arm_server
 ```  
 It will not actually do anything until a service is requested. In a new terminal,  
 ```bash
-$ ros2 service call /set_arm_front std_srvs/srv/Trigger
+ros2 service call /set_arm_front std_srvs/srv/Trigger
 ```
 will call the service and make the arm move.
 
