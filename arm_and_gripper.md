@@ -161,26 +161,30 @@ This file contains two pre-defined positions. We recommend that you practice add
 It is recommended to ask ChatGPT for explanations of the code. Simply copy the code and ask, for example "what is the meaning of 'self' in the code above?", or "why are some file names green when I type `ls`?" 
 
 ## 5. Gripper servo
-The gripper servo motor can be called directly with the following service call  
+The gripper servo motor can be controlled through a 'ROS2 action'. This is an advanced feature for asynchronous tracking of, well, actions, requiring the following command-line command
+
 ```bash
-$ rosservice call /mirte/set_servoGripper_servo_angle "angle: 0.0"
-```   
-> [!NOTE]  
-> Similar ROS services exist for the other joints, but the arm controller also uses these same services. Your service call will be overruled by the arm controller.
+ros2 action send_goal /mirte_master_gripper_controller/gripper_cmd control_msgs/action/GripperCommand "{command: {position: -0.2}}"
+```
 
 Find out what the maximum and minimum values for the gripper angle are, i.e. fully open and fully closed.
 
+> [!NOTE]  
+> Don't let the gripper servo exert too much torque for too long; it will overheat and break. It exerts too much torque when it is trying to reach an angle that is either too far open or too far closed, further than the mechanism allows.
+
 ## 6. Gripper service with success feedback
-To know whether a grasp was successful, we created the example node `~/mirte_ws/src/mirte_workshop/gripper_server.py`   
+To simplify controlling the gripper, we example node `~/mirte_ws/src/mirte_workshop/mirte_workshop/gripper_server.py`. First, make sure that the 'open' and 'close' values are set to the values that you found out in the previous section. Then test it with   
+
 ```bash
-$ rosrun mirte_workshop gripper_server.py
+ros2 run mirte_workshop gripper_server
 ```
- will start this node. It is instructive to check the code.  
-To use the new services, try  
+
+To use the new services, open a new terminal and try one of the following commands
+
 ```bash
-$ rosservice call /gripper_open "{}"` or `$ rosservice call /gripper_close "{}"
+ros2 service call /gripper_open std_srvs/srv/Trigger
+ros2 service call /gripper_close std_srvs/srv/Trigger
 ```  
-You may have to modify the maximum and minimum values for the gripper angle, they differ from robot to robot.
 
 ## 7. Integrated service
 You now have all the tools you need to make an integrated service. For example, you could create a service that you might call '/deliver_package_1', which, in order:  
