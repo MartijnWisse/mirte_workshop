@@ -172,7 +172,7 @@ Find out what the maximum and minimum values for the gripper angle are, i.e. ful
 > [!NOTE]  
 > Don't let the gripper servo exert too much torque for too long; it will overheat and break. It exerts too much torque when it is trying to reach an angle that is either too far open or too far closed, further than the mechanism allows.
 
-## 6. Gripper service with success feedback
+## 6. Gripper service
 To simplify controlling the gripper, we example node `~/mirte_ws/src/mirte_workshop/mirte_workshop/gripper_server.py`. First, make sure that the 'open' and 'close' values are set to the values that you found out in the previous section. Then test it with   
 
 ```bash
