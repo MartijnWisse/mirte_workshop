@@ -1,9 +1,17 @@
-# Ignore all files with a .log extension
-*.log
-
-# Ignore all files with a .tmp extension
-*.tmp
-
-# Ignore all files in the build and devel directory
+# ROS2 build artifacts
 build/
-devel/
+install/
+log/
+
+# Colcon
+.colcon/
+.colconignore
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDEs/editors
+.vscode/
+.idea/
+*.swp

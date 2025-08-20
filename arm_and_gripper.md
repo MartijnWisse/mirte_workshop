@@ -3,9 +3,9 @@
 Let's make Mirte's arm operational!
 
 ## 1. Arm motions from command-line
-There are four arm joints. They are controlled by publishing on the topic `/arm/joint_position_controller/command`, e.g.  
+There are four arm joints. They are controlled by publishing on the topic `/mirte_master_arm_controller/joint_trajectory`, e.g.  
 ```bash
-rostopic pub /arm/joint_position_controller/command std_msgs/Float64MultiArray "{data: [0, 0, 0, 0]}"
+ros2 topic pub --once /mirte_master_arm_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "{joint_names: ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_joint'], points: [{positions: [0.0, 0.0, 0.0, 0.0], time_from_start:{ sec: 3, nanosec: 0}}]}""
 ```
 will put the arm straight up.   
 
@@ -196,4 +196,3 @@ You now have all the tools you need to make an integrated service. For example, 
 - brings the arm to the home position
 
 Discuss with your team members what kind of services your application requires.
-

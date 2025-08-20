@@ -1,7 +1,7 @@
 ![Mirte Master image](./mirte_master.jpeg)  
 *Image by Chris Pek*
 
-# Mirte Master workshop
+# Mirte Master workshop (ROS2 version)
 
 Welcome to the Mirte Master workshop! Maybe, you have just assembled your own Mirte Master using our open-source designs. More likely, you are participating in a workshop and have been told to visit this page. Anyhow, you are about to give your Mirte Master its first abilities!
 
@@ -72,46 +72,43 @@ Let's test that ROS is already running. For example:
 
 | Command|  |
 |:-------|--|
-| `rosnode list` | shows all ROS nodes that are currently running |
-| `rostopic list` | shows all topics that exist |
-| `rostopic echo /topic_name` | displays the messages being sent over `/topic_name` (e.g. `/arm/joint_states`) |
+| `ros2 node list` | shows all ROS nodes that are currently running |
+| `ros2 topic list` | shows all topics that exist |
+| `ros2 topic echo /topic_name` | displays the messages being sent over `/topic_name` (e.g. `/arm/joint_states`) |
 | <kbd>Ctrl</kbd>+<kbd>c</kbd> | stops the last command |
-| `rosservice list` | shows all available ROS services |
+| `ros2 service list` | shows all available ROS services |
 
 ### 1.5. First robot motions
-Driving is controlled through the topic `/mobile_base_controller/cmd_vel`.
+Driving is controlled through the topic `/mirte_base_controller/cmd_vel`.
 
 > [!CAUTION]  
 > Lift up the robot before trying, so that it doesn't drive off the table!
 
 Try the following command.
-After pressing <kbd>Tab</kbd> twice, change the `linear.x` value to `0.3` and press <kbd>Enter</kbd> to publish the message:
 
 ```bash
-rostopic pub /mobile_base_controller/cmd_vel <tab> <tab>
+ros2 topic pub /mirte_base_controller/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" --once
 ```
 
-Stop the publisher with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
-
-The robot keeps driving if the message keeps being repeated, with the `-r` (`--rate`) option.
-After pressing <kbd>Tab</kbd> twice, change the `x` value to `0.3` again and press <kbd>Enter</kbd> to publish the message:
+Instead of the option `--once`, you can also tell it to repeat for continuous driving with `-r` (`--rate`) option. Try the following command.
 
 ```bash
-rostopic pub -r 10 /mobile_base_controller/cmd_vel <tab> <tab>
+ros2 topic pub /mirte_base_controller/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" -r 10
 ```
 
-Check the messages with `rostopic echo` in another terminal.
+Check the messages with `ros2 topic echo` in another terminal.
 
 Stop the publisher with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
 
 ### 1.6. First launch of an additional ROS node: driving around!
 Driving is easier through keyboard teleoperation. This is available in a ROS node that is not currently running.
-`roslaunch mirte_teleop teleopkey.launch` will start keyboard teleoperation.
 
-Use the <kbd>x</kbd> and <kbd>c</kbd> keys to tone down linear velocity to `0.3` and angular velocity to `0.6`.
+`ros2 launch mirte_teleop teleop_key.launch.py` will start keyboard teleoperation.
 
-Drive, and in a different terminal check out `rostopic echo /mobile_base_controller/cmd_vel`
+Use the <kbd>x</kbd> and <kbd>w</kbd> keys to adjust linear velocity and <kbd>c</kbd> and <kbd>e</kbd> to adjust angular velocity.
+
+Drive, and in a different terminal check out `ros2 topic echo /mirte_base_controller/cmd_vel`
 
 ## 2. Getting the workshop software on the robot
 ### 2.1. Folder structure
@@ -126,9 +123,11 @@ Not all required software is on the robot yet. Before fixing that, you need to f
         └── 📁 src
             ├── 📁 mirte_navigation
             ├── 📁 mirte_workshop
-            ├── 📁 mirte_ros_packages
-            ├── 📁 ros_astra_camera
+            ├── 📁 mirte-ros-packages
+            ├── 📁 ros2_astra_camera
             ├── 📁 rplidar_ros
+            ├── 📁 usb_cam
+            ├── 📁 web_video_server
 ```
 
 **The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from GitHub, for which we need an internet connection.
@@ -156,7 +155,7 @@ You are reading this on GitHub. If you scroll up, there is a list of folders and
 
 ```bash
 cd ~/mirte_ws/src
-git clone <...>
+git clone --branch ROS2 <...>
 ```
 
 Replace `<...>` with the https address of the repository. Paste it using a right mouse click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd>.
@@ -173,15 +172,15 @@ Whenever you git clone a new package onto the robot, it needs to be compiled so 
 
 ```bash
 cd ~/mirte_ws
-catkin build mirte_navigation
-catkin build mirte_workshop
+colcon build --symlink-install --packages-select mirte_navigation
+colcon build --symlink-install --packages-select mirte_workshop
 ```
 
 #### 2.4.2 Refresh Environment
 Now, in any new terminal, ROS will know how to find the new folders and files. But not in terminals that already exist. To tell them, in each existing terminal you need to type:
 
 ```bash
-source ~/mirte_ws/devel/setup.bash
+source install/setup.bash
 ```
 
 Alternatively, you can close the terminal(s) and open new ones.
@@ -190,7 +189,7 @@ Alternatively, you can close the terminal(s) and open new ones.
 Let's test if it all works with the very underwhelming command
 
 ```bash
-rosrun mirte_workshop mirte_keyboard.py
+ros2 run mirte_workshop mirte_keyboard.py
 ```
 
 It works if there are no errors, and if you see the characters that you type, back on the screen. Check the Python code to find out which new topic has been created; you can see the same characters when you echo that topic.
