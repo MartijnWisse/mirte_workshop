@@ -1,38 +1,39 @@
 # Navigation
 
 This module requires close collaboration with the 'RViz' module, to see the result of your work.
+This module assumes that you have completed the instructions in the main README.md, especially the installation of the mirte_navigation package.
 
 ## 1. Mapping
 We will use a standard package for mapping and navigation; gmapping and amcl. Let's tell the robot to create a map by driving around and storing the lidar data in a map:  
 ```bash
-roslaunch mirte_navigation gmapping.launch
+ros2 launch mirte_navigation minimal_slam_launch.py
 ``` 
 
 If this starts without errors, then it is working. Unfortunately, the Mirte Master is not equipped to show any graphics, it can only show text. Therefore, ask the RViz team member to add a map display and show the /map topic. In 'Global Options' (top left of screen) ask them to set the parameter 'Fixed Frame' to 'map'. You'll see a very incomplete map. Drive around with teleopkey to see the map grow. Don't turn too briskly to create a neat map. If the map is ruined, launch gmapping again.
 
 ## 2. Saving the map
-If the map looks good, save it *before shutting down gmapping*. In a new terminal, use the following command:  
+If the map looks good, save it *before shutting down minimal_slam_launch.py*. In a new terminal, use the following command:  
 ```bash
-rosrun map_server map_saver -f /home/mirte/mirte_ws/src/mirte_workshop/maps/default
+ros2 run nav2_map_server map_saver_cli -f /home/mirte/mirte_ws/src/mirte_navigation/maps/default
 ```  
 
-This command updates the files `default.yaml` and `default.pgm` in the directory `~/mirte_ws/src/mirte_workshop/maps`. Every time you run the command, these files will be overwritten. Open the `default.yaml` file to see that it contains a reference to the `default.pgm` file, so moving files to different folders must be done with care.
+This command updates the files `default.yaml` and `default.pgm` in the directory `~/mirte_ws/src/mirte_navigation/maps`. Every time you run the command, these files will be overwritten. Open the `default.yaml` file to see that it contains a reference to the `default.pgm` file, so moving files to different folders must be done with care.
 
-Now, close gmapping with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
+Now, close minimal_slam_launch.p with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
 ## 3. Localizing with a saved map
 With the successfully saved map and successfully installed Navigation stack, we can now run  
 ```bash
-roslaunch mirte_navigation amcl_demo.launch
+ros2 launch mirte_navigation minimal_navigation_launch.py
 ```  
 
 Again, you need RViz to see whether it works. In addition to showing the map, you also want to see the lidar data, the global costmap and the local costmap. The initial position estimate is probably wrong. Make it approximately correct in RViz by clicking the "2D Pose Estimate" (green arrow) in the map. This will only work if in the left pane of RViz, Displays - Global Options - Fixed Frame is set to "map".
 
 ## 4. Using a custom map name
-If you wish to use a different map name, use your custom map name in the map_saver command. To use this map for navigation, open the file `~/mirte_ws/src/mirte_navigation/launch/amcl_demo.launch` and change the map name in the line 
+If you wish to use a different map name, use your custom map name in the map_saver command. To use this map for navigation, open the file `~/mirte_ws/src/mirte_navigation/params/minimal_nav2_params.yaml` and change the map name in the line 
 
-```xml
-<arg name="map_file" default="$(find mirte_workshop)/maps/default.yaml"/>
+```yaml
+     yaml_filename: "/home/mirte/mirte_ws/src/mirte_navigation/maps/default.yaml"
 ```
 
 ## 5. Navigating
