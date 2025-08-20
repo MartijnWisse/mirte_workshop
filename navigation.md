@@ -38,13 +38,20 @@ If you wish to use a different map name, use your custom map name in the map_sav
 
 ## 5. Navigating
 A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RViz. Pay attention to the terminal from which amcl_demo was launched.  
-There is no simple command-line command to set navigation goals. Therefore, we created a Python script with a service to set navigation goals.  
+
+You can also provide a navigation goal through the command line. First carefully check that the goal coordinates are reachable.
 ```bash
-rosrun mirte_navigation move_to_server.py
+ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: {header: {frame_id: map}, pose: {position: {x: 1.0, y: 2.0, z: 0.0}, orientation: {z: 0.0, w: 1.0}}}}"
 ```
-will create the rosservice /move_to. Until the 'markers' team member is ready, the only navigation goals available are 'start' and 'test_location'. From a new terminal, the rosservice can be called with:  
+
+It would be nice to give certain locations a label, and then navigate by label. Therefore, we created a Python script with a service to set navigation goals.  
 ```bash
-rosservice call /move_to "location: 'start'"
+ros2 run mirte_navigation move_to_server
+```
+
+This file will create the rosservice /move_to. Until the 'markers' team member is ready, the only navigation goals available are 'start' and 'test_location'. From a new terminal, the rosservice can be called with:  
+```bash
+ros2 service call /move_to "location: 'start'"
 ```   
 
 It is recommended to check the file `move_to_server.py` and ask anything that is unclear to ChatGPT. Simply copy the entire code and ask. It will also assist with unexpected errors.
