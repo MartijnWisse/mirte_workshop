@@ -196,25 +196,6 @@ ros2 run mirte_workshop mirte_keyboard.py
 
 It works if there are no errors, and if you see the characters that you type, back on the screen. Check the Python code to find out which new topic has been created; you can see the same characters when you echo that topic.
 
-### 2.5. Launching mirte_workshop specific configuration
-When you turned on the robot, ROS was automatically started. However:
-- This is not exactly the right configuration for the workshop, and
-- It doesn't show screen output, so we don't know what is going on
-
-Stop the invisible ROS instance:
-
-```bash
-sudo service mirte-ros stop
-```
-
-Now start the right one with:
-
-```bash
-roslaunch mirte_workshop mirte_workshop.launch
-```
-
-The screen will show which nodes are being started. It will also show error messages, if any. Once launched, you can no longer use this terminal, and <kbd>Ctrl</kbd>+<kbd>c</kbd> will stop ROS. Therefore, open new terminals to run additional commands.
-
 ## 3. Get all the components ready
 Here are six workshop modules. The best way to work through them is to assign each module to a different team member.
 

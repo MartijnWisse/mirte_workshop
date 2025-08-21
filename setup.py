@@ -20,10 +20,15 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "test_arm_simple_script = mirte_workshop.test_arm_simple_script:main",
-            "arm_server = mirte_workshop.arm_server:main",
-            "arm_task_server = mirte_workshop.arm_task_server:main",
-            "gripper_server = mirte_workshop.gripper_server:main",
+            "test_arm_simple_script.py = mirte_workshop.test_arm_simple_script:main",
+            "arm_server.py = mirte_workshop.arm_server:main",
+            "arm_task_server.py = mirte_workshop.arm_task_server:main",
+            "gripper_server.py = mirte_workshop.gripper_server:main",
+            "mirte_keyboard.py = mirte_workshop.mirte_keyboard:main",
         ],
     },
 )
+
+# Note: the entry_points here have a .py extension. This is unusual.
+# I have done this to make running a node consisted with nodes
+# from ament_cmake packages.  
