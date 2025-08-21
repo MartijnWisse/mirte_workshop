@@ -161,9 +161,10 @@ git clone --branch ROS2 <...>
 Replace `<...>` with the https address of the repository. Paste it using a right mouse click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd>.
 
 
-#### 2.3.2 Clone the navigation repository
-Find the repository [MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) on GitHub and clone that onto the robot as well.
-
+#### 2.3.2 Clone two more repositories
+Find the following repositories on GitHub and clone these onto the robot as well: 
+[MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) 
+[MartijnWisse/mirte_location_markers](https://github.com/MartijnWisse/mirte_location_markers) 
 
 ### 2.4. Compiling new packages
 
@@ -172,8 +173,9 @@ Whenever you git clone a new package onto the robot, it needs to be compiled so 
 
 ```bash
 cd ~/mirte_ws
-colcon build --symlink-install --packages-select mirte_navigation
 colcon build --symlink-install --packages-select mirte_workshop
+colcon build --symlink-install --packages-select mirte_navigation
+colcon build --symlink-install --packages-select mirte_location_markers
 ```
 
 #### 2.4.2 Refresh Environment
