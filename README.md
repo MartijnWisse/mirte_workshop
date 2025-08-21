@@ -155,7 +155,7 @@ You are reading this on GitHub. If you scroll up, there is a list of folders and
 
 ```bash
 cd ~/mirte_ws/src
-git clone --branch ROS2 <...>
+git clone --branch ros2_humble <...>
 ```
 
 Replace `<...>` with the https address of the repository. Paste it using a right mouse click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd>.
