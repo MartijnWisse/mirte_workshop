@@ -2,82 +2,117 @@
 Launch files are ideal to start multiple ROS nodes at once. Launch files can include other launch files.
 
 ## 1. Command-line launch commands
-The `roslaunch` command cleverly checks whether ROS is already running. You have already seen this because you used the launch command twice:  
+You have already used the launch command before, when starting keyboard control for driving, with:  
 ```bash
-$ roslaunch mirte_workshop mirte_workshop.launch
+ros2 launch mirte_teleop teleop_key.launch.py
 ```
-started the basic nodes for driving control etc.  
-```bash
-$ roslaunch mirte_teleop teleopkey.launch
-```
-started the node that allowed keyboard control for driving.
 
-The command structure is `roslaunch <package_name> <file_name>`. It cleverly knows to find the package folder and to check in the `launch` folder inside that package folder. Verify the above commands with the folder structure on the left side of the VS Code screen.
+We have also prepared another example launch file for you, which launches the mirte_keyboard.py node that you tested before. Try it out:
+```bash
+ros2 launch mirte_workshop mirte_example_launch.py
+```
+
+The command structure is `ros2 launch <package_name> <file_name>`. It cleverly knows to find the package folder and to check in the `launch` folder inside that package folder. Verify this by finding the folders and launch files mentioned above, using the folder structure on the left side of the VS Code screen.
 
 ## 2. Create your own launch file
-In the folder `~/mirte_ws/src/mirte_workshop/launch`, create a new file and call it `arm_and_gripper.launch`.  
-Copy the following code into it:
-
-```xml
-<launch>
-    <node pkg="mirte_workshop" name="arm_server" type="arm_server.py" output="screen"/>
-</launch>
+In the folder `~/mirte_ws/src/mirte_workshop/launch`, create a new file and call it `manipulator_launch.py`.  
+Copy the code from `mirte_example_launch.py` into it, and modify it such that it starts `gripper_server.py`. Then save the file.  
+Whenever you add new files, the workpackage must be built again using colcon:  
+```bash
+cd ~/mirte_ws
+colcon build --symlink-install --packages-select mirte_workshop
+```
+And don't forget to source this in all open terminals (also on other people's computers):  
+```bash
+cd ~/mirte_ws
+source install/setup.bash
+```
+Finally, test if it works with:
+```bash
+ros2 launch mirte_workshop manipulator_launch.py
 ```
 
-Save the file and test it with
-```bash
-$ roslaunch mirte_workshop arm_and_gripper.launch
-```  
-Now add the `gripper_server.py` node to the launch file and test it.
 > [!NOTE]
 > Make sure that nodes are not started twice. Other team members may start nodes from their computer.  
 
-## 3. `roslaunch` trumps `rosrun`
-`roslaunch` is at the top of the food chain. It is the most complete and robust way to launch nodes. It is better than the quick command that your team members use:  
+## 3. `ros2 launch` trumps `ros2 run`
+`ros2 launch` is at the top of the food chain. It is the most complete and robust way to launch nodes. It is better than the quick command that your team members use:  
 ```bash
-$ rosrun mirte_workshop arm_server.py
+ros2 run mirte_workshop arm_server.py
 ```
-so it is advisable to make nice launch files for them.
+Thus, it is advisable to make nice launch files for them, and eventually one single launch file that launches all required nodes.
 
-By the way, the `rosrun` command is still better than
+By the way, the `ros2 run` command is still better than
 ```bash
-$ python3 arm_server.py
+python3 arm_server.py
 ```
-For `rosrun` and `roslaunch` to work, you must tell Linux that your Python files are executable:  
+For `ros2 run` and `ros2 launch` to work, you must sometimes tell Linux that your Python files are executable:  
 ```bash
-$ chmod +x python_file_name.py
+cd ~/mirte_ws/src/mirte_workshop/<type_here_the_correct_folder>
+chmod +x python_file_name.py
 ``` 
 
 ## 4. Include other launch files
-Code that works well, does not need to be started separately; you can have it launch together with all the other nodes. Just leave your new `arm_and_gripper.launch` file as it is, and add the following line to `mirte_workshop.launch`
-
-```xml
-<include file="$(find mirte_workshop)/launch/arm_and_gripper.launch"/>
-```
-
-Or, vice versa, you could include the `mirte_workshop.launch` file in your own.
+Once you have more than one launch file, you may want one launch file to include the other. In such cases, please refer to the relevant tutorials, e.g.:  
+https://docs.ros.org/en/rolling/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html#writing-launch-files 
 
 ## 5. Alias
 For an even faster start, you can create an 'alias' in Linux. 
 Open the file `~/.bashrc` in the editor. Add the following line at the bottom of the file:  
 
 ```bash
-alias go='roslaunch mirte_workshop mirte_workshop.launch'
+alias go='ros2 launch mirte_workshop mirte_example_launch.py'
 ```
 
 Save the file. All **new** terminals will now execute the `roslaunch` command if you type
 ```bash
-$ go
+go
 ```
-but existing terminals won't, unless you first
+Existing terminals won't work until you first do  
 ```bash
-$ source ~/.bashrc
+source ~/.bashrc
 ``` 
 
-## 6. Create an integrated system
-Discuss with your team members which files need to be started automatically. Some, like keyboard control, are better started separately in their own terminal. Create your complete application!
-
-It is advised to analyze the `mirte_workshop.launch` file thoroughly, and request explanation from ChatGPT about any unclear code in that file. It is nice to check the content of the launch file with
+## 6. Debugging: when the whole ROS2 system breaks
+Your launch file started a new ROS2 node. You can see it appear/disappear if you check  
 ```bash
-$ rosnode list
+ros2 node list
 ```
+
+However, you'll also notice many other nodes that you didn't launch, like `io/telemetrix`. These were started by a background process. You have two ways to control this: invisible and visible.
+
+### 6.1 Invisible ROS2 launch
+To stop all mirte's ROS2 nodes, use:
+```bash
+sudo service mirte-ros stop
+```
+
+To start them up again, after waiting about 20 seconds, use:
+```bash
+sudo service mirte-ros start
+```
+
+### 6.2 Visible (informative) ROS2 launch
+Stop in the same way:
+```bash
+sudo service mirte-ros stop
+```
+
+Double check that there are no nodes running, other than potentially `rosboard_node`, and `rviz2` on another computer:
+```bash
+ros2 node list
+```
+
+Start it in the visible and informative way:
+```bash
+ros2 launch mirte_bringup minimal_master.launch.py
+```
+
+The terminal will no longer be usable, so open a new terminal to do anything else.
+To stop it, use `ctrl`+`c` in the terminal where it started.
+
+> [!NOTE]
+> If the basic mirte ROS2 nodes are not running, the robot automatically shuts down after 15 minutes, because it cannot monitor the battery charge.
+
+## 7. Create an integrated system
+Discuss with your team members which files need to be started automatically. Some, like keyboard control, are better started separately in their own terminal. Create your complete application!
