@@ -123,7 +123,7 @@ First, open the file `~/mirte_ws/src/mirte_workshop/setup.py`. Find the lines re
 ```python
     entry_points={
         'console_scripts': [
-            "arm_simple_script = mirte_workshop.arm_simple_script:main",
+            "arm_simple_script.py = mirte_workshop.arm_simple_script:main",
         ],
     },
 ```
@@ -139,7 +139,7 @@ source install/setup.bash
 Now, ROS2 can find and run the file, which you can test with
 
 ```bash
-ros2 run mirte_workshop arm_simple_script
+ros2 run mirte_workshop arm_simple_script.py
 ```
 
 
@@ -149,7 +149,7 @@ For easy integration with the rest of the robot software, you may want to create
 We (well, ChatGPT) prepared an example file for you, `~/mirte_ws/src/mirte_workshop/mirte_workshop/arm_server.py`.  
 To start it up, use
 ```bash
-ros2 run mirte_workshop arm_server
+ros2 run mirte_workshop arm_server.py
 ```  
 It will not actually do anything until a service is requested. In a new terminal,  
 ```bash
@@ -176,7 +176,7 @@ Find out what the maximum and minimum values for the gripper angle are, i.e. ful
 To simplify controlling the gripper, we created the example node `~/mirte_ws/src/mirte_workshop/mirte_workshop/gripper_server.py`. First, make sure that the 'open' and 'close' values are set to the values that you found out in the previous section. Then test it with   
 
 ```bash
-ros2 run mirte_workshop gripper_server
+ros2 run mirte_workshop gripper_server.py
 ```
 
 To use the new services, open a new terminal and try one of the following commands

@@ -155,16 +155,16 @@ You are reading this on GitHub. If you scroll up, there is a list of folders and
 
 ```bash
 cd ~/mirte_ws/src
-git clone --branch ROS2 <...>
+git clone --branch ros2_humble <...>
 ```
 
 Replace `<...>` with the https address of the repository. Paste it using a right mouse click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd>.
 
 
 #### 2.3.2 Clone two more repositories
-Find the following repositories on GitHub and clone these onto the robot as well: 
-[MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) 
-[MartijnWisse/mirte_location_markers](https://github.com/MartijnWisse/mirte_location_markers) 
+Find the following repositories on GitHub and clone these onto the robot as well:   
+[MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation)   
+[MartijnWisse/mirte_location_markers](https://github.com/MartijnWisse/mirte_location_markers)  
 
 ### 2.4. Compiling new packages
 
