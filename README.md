@@ -162,9 +162,9 @@ Replace `<...>` with the https address of the repository. Paste it using a right
 
 
 #### 2.3.2 Clone two more repositories
-Find the following repositories on GitHub and clone these onto the robot as well: 
-[MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation) 
-[MartijnWisse/mirte_location_markers](https://github.com/MartijnWisse/mirte_location_markers) 
+Find the following repositories on GitHub and clone these onto the robot as well:   
+[MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation)   
+[MartijnWisse/mirte_location_markers](https://github.com/MartijnWisse/mirte_location_markers)  
 
 ### 2.4. Compiling new packages
 
