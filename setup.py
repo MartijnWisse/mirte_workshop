@@ -1,4 +1,6 @@
 from setuptools import find_packages, setup
+import os
+from glob import glob
 
 package_name = 'mirte_workshop'
 
@@ -10,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/launch', glob('launch/*.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,5 +33,5 @@ setup(
 )
 
 # Note: the entry_points here have a .py extension. This is unusual.
-# I have done this to make running a node consisted with nodes
+# I have done this to make running a node consistent with nodes
 # from ament_cmake packages.  
