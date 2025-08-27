@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="mirte_workshop" exec="gripper_server.py" name="gripper_server"/>
+</launch>

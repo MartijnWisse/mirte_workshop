@@ -10,8 +10,6 @@ class ArmControlNode(Node):
         super().__init__('arm_control')
 
         # Create service clients
-        self.set_arm_package_1 = self.create_client(Trigger, '/set_arm_package_1')
-        self.set_arm_package_2 = self.create_client(Trigger, '/set_arm_package_2')
         self.set_arm_home = self.create_client(Trigger, '/set_arm_home')
         self.set_arm_front = self.create_client(Trigger, '/set_arm_front')
         self.gripper_open = self.create_client(Trigger, '/gripper_open')
@@ -33,6 +31,7 @@ class ArmControlNode(Node):
         self.create_service(Trigger, '/deliver_package_2', self.handle_deliver_package_2)
 
         self.get_logger().info("Arm task services /deliver_package_1 and 2 are ready")
+        self.get_logger().info("However, the motions are still incorrect, this file needs to be modified")
 
     def call_trigger(self, client):
         req = Trigger.Request()
@@ -46,7 +45,7 @@ class ArmControlNode(Node):
         time.sleep(1)
 
         self.get_logger().info("Step 3")
-        self.call_trigger(self.set_arm_package_1)
+        self.call_trigger(self.set_arm_home) #modify this, to move the arm to the package_1 location
         self.get_logger().info("Step 4")
         time.sleep(1)
 
@@ -71,7 +70,7 @@ class ArmControlNode(Node):
         self.call_trigger(self.gripper_open)
         time.sleep(1)
 
-        self.call_trigger(self.set_arm_package_2)
+        self.call_trigger(self.set_arm_home)   #modify this, to move the arm to the package_2 location
         time.sleep(1)
 
         self.call_trigger(self.gripper_close)
