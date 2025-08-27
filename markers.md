@@ -37,7 +37,7 @@ Test these services and check how they interact with the file `stored_poses.yaml
 ## 3. Test the `move_to_server`
 We prepared a ROS2 node that can tell the robot to go to one of the stored locations. Collaborate with the 'navigation' team to prevent running the following command twice:
 ```bash
-ros2 run mirte_navigation move_to_server.py
+ros2 run mirte_location_markers move_to_server.py
 ```
 
 and test it with
