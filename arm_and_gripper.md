@@ -195,4 +195,6 @@ You now have all the tools you need to make an integrated service. For example, 
 - opens the gripper
 - brings the arm to the home position
 
+We have already provided a skeleton for this in the file `arm_task_server.py`, but it requires some modifications.
+
 Discuss with your team members what kind of services your application requires.
