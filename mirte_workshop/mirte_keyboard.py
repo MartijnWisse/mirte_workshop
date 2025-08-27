@@ -8,6 +8,9 @@ What it does
 - Publishes that text on the 'key_press' topic (std_msgs/String).
 - If the user types exactly 'q' and presses Enter, the node exits.
 
+Doesn't work with launch files
+------------------------------
+- This file fails when launched through a launch file
 
 How students can modify
 -----------------------
