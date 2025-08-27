@@ -9,14 +9,17 @@ ros2 launch mirte_teleop teleop_key.launch.py
 
 We have also prepared another example launch file for you, which launches the mirte_keyboard.py node that you tested before. Try it out:
 ```bash
-ros2 launch mirte_workshop mirte_example_launch.py
+ros2 launch mirte_workshop mirte_example_launch.xml
 ```
 
-The command structure is `ros2 launch <package_name> <file_name>`. It cleverly knows to find the package folder and to check in the `launch` folder inside that package folder. Verify this by finding the folders and launch files mentioned above, using the folder structure on the left side of the VS Code screen.
+The command structure is `ros2 launch <package_name> <file_name>`. It cleverly knows to find the package folder and to check in the `launch` folder inside that package folder. Verify this by finding the folders and launch files mentioned above, using the folder structure on the left side of the VS Code screen. 
+
+> [!NOTE]  
+> Although ROS2 supports Python launch files, as in the teleop_key example, it is preferred to use the lean `.xml` format as in `mirte_example_launch.xml`.
 
 ## 2. Create your own launch file
-In the folder `~/mirte_ws/src/mirte_workshop/launch`, create a new file and call it `manipulator_launch.py`.  
-Copy the code from `mirte_example_launch.py` into it, and modify it such that it starts `gripper_server.py`. Then save the file.  
+In the folder `~/mirte_ws/src/mirte_workshop/launch`, create a new file and call it `manipulator_launch.xml`.  
+Copy the code from `mirte_example_launch.xml` into it, and modify it such that it starts not only `gripper_server.py`, but also `arm_server.py` and `arm_task_server.py`. Then save the file.  
 Whenever you add new files, the workpackage must be built again using colcon:  
 ```bash
 cd ~/mirte_ws
@@ -54,14 +57,14 @@ chmod +x python_file_name.py
 
 ## 4. Include other launch files
 Once you have more than one launch file, you may want one launch file to include the other. In such cases, please refer to the relevant tutorials, e.g.:  
-https://docs.ros.org/en/rolling/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html#writing-launch-files 
+https://docs.ros.org/en/rolling/Tutorials/Intermediate/Launch/Creating-Launch-Files.html 
 
 ## 5. Alias
 For an even faster start, you can create an 'alias' in Linux. 
 Open the file `~/.bashrc` in the editor. Add the following line at the bottom of the file:  
 
 ```bash
-alias go='ros2 launch mirte_workshop mirte_example_launch.py'
+alias go='ros2 launch mirte_workshop mirte_example_launch.xml'
 ```
 
 Save the file. All **new** terminals will now execute the `roslaunch` command if you type
