@@ -203,16 +203,14 @@ Here are six workshop modules. The best way to work through them is to assign ea
 
 ### [2. Launch files](launch_files.md)
 
-### [3. Keyboard control](keyboard_control.md)
+### [3. Navigation](navigation.md)
 
-### [4. Navigation](navigation.md)
+### [4. RViz](rviz.md) *requires laptop/desktop with ROS noetic*
 
-### [5. RViz](rviz.md) *requires laptop/desktop with ROS noetic*
-
-### [6. Markers](markers.md)
+### [5. Markers](markers.md)
 
 ## 4. Make a delivery robot
 Put all the components together. You are free to create your own scenario. Here is one option:
-- At the press of one key (e.g., '1'), drive to a location and deliver a package
-- At the press of another key, drive to a second location and deliver a package
-- At the press of a third key, go back to the home position (to collect more packages)
+- With a single bash command, (e.g. 'deliver1'), drive to a location and deliver a package
+- With another command, drive to a second location and deliver a package
+- With a third command, go back to the home position
