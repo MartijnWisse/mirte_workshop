@@ -109,7 +109,7 @@ if __name__ == '__main__':
 
 Save the file, move to the script directory and test if it works with:
 ```bash
-cd ~/mirte_ws/src/mirte_workshop/scripts
+cd ~/mirte_ws/src/mirte_workshop/mirte_workshop
 python3 arm_simple_script.py
 ```  
 
