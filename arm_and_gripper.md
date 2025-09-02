@@ -5,7 +5,7 @@ Let's make Mirte's arm operational!
 ## 1. Arm motions from command-line
 There are four arm joints. They are controlled by publishing on the topic `/mirte_master_arm_controller/joint_trajectory`, e.g.  
 ```bash
-ros2 topic pub --once /mirte_master_arm_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "{joint_names: ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_joint'], points: [{positions: [0.0, 0.0, 0.0, 0.0], time_from_start:{ sec: 3, nanosec: 0}}]}""
+ros2 topic pub --once /mirte_master_arm_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "{joint_names: ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_joint'], points: [{positions: [0.0, 0.0, 0.0, 0.0], time_from_start:{ sec: 3, nanosec: 0}}]}"
 ```
 will put the arm straight up.   
 
