@@ -32,7 +32,7 @@ source install/setup.bash
 ```
 Finally, test if it works with:
 ```bash
-ros2 launch mirte_workshop manipulator_launch.py
+ros2 launch mirte_workshop manipulator_launch.xml
 ```
 
 > [!NOTE]

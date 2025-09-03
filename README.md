@@ -39,6 +39,8 @@ The rear display shows a WiFi network name, `Mirte-XXXXXX`. Connect to it with y
 #### 1.2.2 Navigate to the control interface
 Open a browser on your laptop and go to the website "http://192.168.42.1:8000"
 
+If asked for a login:
+
 **Username**: `mirte`  
 **Password**: `mirte_mirte`  
 
@@ -49,13 +51,14 @@ You should see the VS Code web editor, a powerful tool to program robots.
 
 ### 1.3. First login
 
-In the VS Code web editor, open a new terminal. One team member should change the default password through the command
+If you get a propt to enter a new password, use `dev_dev`. This won't change the WiFi password.
+<!-- In the VS Code web editor, open a new terminal. One team member should change the default password through the command
 `passwd`
 
 > [!NOTE]  
 > In Linux, you don't see what you type in the password field, this is for improved security.
 
-Carefully read the response on the screen. Share the new password with your team members. They can now log in simultaneously from their own laptops.
+Carefully read the response on the screen. Share the new password with your team members. They can now log in simultaneously from their own laptops. -->
 
 ### 1.4. First Linux and ROS tests
 Once you have a terminal, let's refresh your linux skills. For example:
