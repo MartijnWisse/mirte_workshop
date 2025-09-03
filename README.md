@@ -190,7 +190,15 @@ colcon build --symlink-install --packages-select mirte_navigation
 colcon build --symlink-install --packages-select mirte_location_markers
 ```
 
-#### 2.4.2 Refresh Environment
+#### 2.4.2 Install missing (standard) ROS packages
+For the navigation part of this workshop, two standard ROS packages are still missing that you'll need to install as well:
+```bash
+sudo apt update
+sudo apt install ros-humble-topic-tools
+sudo apt install ros-humble-navigation2
+```
+
+#### 2.4.3 Refresh Environment
 Now, in any new terminal, ROS will know how to find the new folders and files. But not in terminals that already exist. To tell them, in each existing terminal you need to type:
 
 ```bash
@@ -199,7 +207,7 @@ source install/setup.bash
 
 Alternatively, you can close the terminal(s) and open new ones.
 
-#### 2.4.3 Testing
+#### 2.4.4 Testing
 Let's test if it all works with the very underwhelming command
 
 ```bash
