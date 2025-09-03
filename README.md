@@ -170,15 +170,6 @@ Find the following repositories on GitHub and clone these onto the robot as well
 [MartijnWisse/mirte_location_markers](https://github.com/MartijnWisse/mirte_location_markers)  
 
 ### 2.4. Compiling new packages
-#### 2.4.0 Installing extra packages
-To compile and run the new packages, the robot needs some extra ROS tools:
-```bash
-sudo apt update
-
-sudo apt install ros-humble-topic-tools
-
-sudo apt install ros-humble-navigation2
-```
 
 #### 2.4.1 Compile
 Whenever you git clone a new package onto the robot, it needs to be compiled so that ROS can find and use it. For example:
