@@ -49,16 +49,24 @@ You should see the VS Code web editor, a powerful tool to program robots.
 > [!TIP]  
 > In the bottom left, you can modify "Themes" --> "Color Theme" for better visibility.
 
+### 1.2.3 If unable to login
+If you're using your robot on a different WiFi network, it might ask for a login, but won't allow you to. This is because the login system requires you to update the password which doesn't work through the website login system.
+
+Run `ssh mirte@[ip]` in CMD/Terminal/Bash and use `mirte_mirte` as the password. It will ask you for a new password. If it's shorter than 8 characters, the WiFi password isn't changed. You can use your new password for logging in to the website.
+
 ### 1.3. First login
 
-If you get a propt to enter a new password, use `dev_dev`. This won't change the WiFi password.
-<!-- In the VS Code web editor, open a new terminal. One team member should change the default password through the command
+If you get a propt to enter a new password, use `dev_dev`. This won't change the WiFi password as it's too short and will be ignored.
+
+In the VS Code web editor, open a new terminal. One team member should change the default password through the command
 `passwd`
 
 > [!NOTE]  
 > In Linux, you don't see what you type in the password field, this is for improved security.
 
-Carefully read the response on the screen. Share the new password with your team members. They can now log in simultaneously from their own laptops. -->
+Carefully read the response on the screen. Share the new password with your team members. They can now log in simultaneously from their own laptops.
+
+
 
 ### 1.4. First Linux and ROS tests
 Once you have a terminal, let's refresh your linux skills. For example:

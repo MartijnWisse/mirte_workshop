@@ -11,9 +11,29 @@ echo $ROS_DOMAIN_ID
 ```
 The value should exist and be non-zero.
 
+<details>
+<summary>If there is no value shown:</summary>
+
+Edit the `~/.mirte_settings.sh` file and add the following line to the end:
+
+```bash
+export ROS_DOMAIN_ID=<robot_number>
+``` 
+
+Restart the robot `sudo reboot now` for all systems to have the correct settings.
+
+</details>
+
+
 Then, in the ROS2 Humble computer, open the file `~/.bashrc`, and add the following line:
 ```bash
 export ROS_DOMAIN_ID=<put_here_the_correct_number>
+```
+
+and run
+
+```bash
+source ~/.bashrc
 ```
 
 We can partially test if it set correctly with  
