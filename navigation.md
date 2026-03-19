@@ -46,7 +46,7 @@ ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: 
 
 It would be nice to give certain locations a label, and then navigate by label. Therefore, we created a Python script with a service to set navigation goals.  
 ```bash
-ros2 run mirte_location_markers move_to_server
+ros2 run mirte_location_markers move_to_server.py
 ```
 
 This file will create the rosservice /move_to. Until the 'markers' team member is ready, the only navigation goals available are 'start' and 'test_location'. From a new terminal, the rosservice can be called with:  
