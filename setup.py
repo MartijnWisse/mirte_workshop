@@ -24,7 +24,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "test_arm_simple_script.py = mirte_workshop.test_arm_simple_script:main",
             "arm_server.py = mirte_workshop.arm_server:main",
             "arm_task_server.py = mirte_workshop.arm_task_server:main",
             "gripper_server.py = mirte_workshop.gripper_server:main",
