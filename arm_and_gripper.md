@@ -5,11 +5,13 @@ Let's make Mirte's arm operational!
 ## 1. Arm motions from command-line
 There are four arm joints. They are controlled by publishing on the topic `/mirte_master_arm_controller/joint_trajectory`, e.g.  
 ```bash
-ros2 topic pub --once /mirte_master_arm_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "{joint_names: ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_joint'], points: [{positions: [0.0, 0.0, 0.0, 0.0], time_from_start:{ sec: 3, nanosec: 0}}]}"
+ros2 topic pub --once /mirte_master_arm_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "{joint_names: ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_joint'], points: [{positions: [0.0, 0.0, 0.0, 0.0], time_from_start:{ sec: 1, nanosec: 0}}]}"
 ```
-will put the arm straight up.   
+will put the arm straight up. 
 
-Test which number corresponds to which joint, and which rotation direction is positive. It is recommended to make a good drawing.
+Note that the command is not reliably transmitted, you may have to try several times.
+
+Test which joint name corresponds to which physical joint on the robot, and which rotation direction is positive. It is recommended to make a good drawing.
 
 The robot has two slots for packages on its back. Find the proper angle values for the pick-up arm configuration, so that Mirte Master can grasp the items off of its back in order to place them.
 
@@ -67,7 +69,7 @@ def main():
     point.positions = [0.0, 0.0, 0.0, 0.0]
 
     # define how fast to move
-    point.time_from_start = Duration(sec=3, nanosec=0)
+    point.time_from_start = Duration(sec=1, nanosec=0)
 
     # add the position and timing info to the trajectory
     trajectory1.points.append(point)
@@ -94,7 +96,7 @@ def main():
     ]
     point2 = JointTrajectoryPoint()
     point2.positions = [1.0, 0.0, 1.0, 1.0]
-    point2.time_from_start = Duration(sec=3, nanosec=0)
+    point2.time_from_start = Duration(sec=1, nanosec=0)
     trajectory2.points.append(point2)
     arm_command_publisher.publish(trajectory2)
     node.get_logger().info('Moving to position 2')
