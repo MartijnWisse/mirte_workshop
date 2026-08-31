@@ -1,5 +1,5 @@
-![Mirte Master image](./mirte_master.jpeg)  
-*Image by Chris Pek*
+![Mirte Master image](./MIRTE_Master.png)  
+*Image by Martin Klomp*
 
 # Mirte Master workshop (ROS2 version)
 
@@ -14,30 +14,36 @@ Welcome to the Mirte Master workshop! Maybe, you have just assembled your own Mi
 - the arm is pointing more or less upward.
 *note: if the robot is already on, you cannot move the arm any more. Don't try too hard, it might break.*
 
+If you intend to use your android phone as a hotspot for the robot in Section 2.2, turn on the hotspot now, before switching on the robot. iPhone seems problematic for this purpose.
+
 #### 1.1.2 Switching Mirte on
 - Switch it on, and
-- wait until text appears on the little rear display.
-- As long as the robot doesn't need to drive, keep it connected to the charger.
+- wait until text appears on the little side display.
 
 #### 1.1.3 Battery Safety WARNING
-**Very important**:
-The battery will break when over-discharged.
+The battery might break when over-discharged.
 
 > [!WARNING]  
 > Never let the battery percentage go below 10%.
 
-As long as ROS is running, it will check battery level and automatically shut down below 10%. Without ROS running, be extremely careful.
+As long as ROS is running, it will check battery level and automatically shut down below 10%. Without ROS running, the robot is set to auto-shutdown for safety after about 10 minutes.
 
 ### 1.2. Connecting
 
-#### 1.2.1 Connect to the WiFi
-The rear display shows a WiFi network name, `Mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`).
+#### 1.2.1 Connect via UTP cable
+Connect a UTP cable between the robot and (one of your) laptop(s). That laptop should still be able to reach internet through WiFi, and at the same time see the robot through the UTP cable.
+
+#### 1.2.2 Connect to the WiFi
+If you don't have a UTP port or if your team wants to connect multiple laptops, use WiFi.
+The side display shows a WiFi network name, `Mirte-XXXXXX`. Connect to it with your laptop (**Password**: `mirte_mirte`).
 
 > [!NOTE]  
-> You will lose internet access, unless your laptop has another (fi: wired) internet connection.
+> You will lose internet access, unless your laptop has another (fi: wired) internet connection. 
 
-#### 1.2.2 Navigate to the control interface
-Open a browser on your laptop and go to the website "http://192.168.42.1:8000"
+#### 1.2.3 Navigate to the control interface
+Open a browser on your laptop and 
+- for the UTP connection go to the website "http://192.168.45.1:8000"
+- for the WiFi connection go to the website "http://192.168.42.1:8000"
 
 If asked for a login:
 
@@ -51,7 +57,7 @@ You should see the VS Code web editor, a powerful tool to program robots.
 
 ### 1.3. First login
 
-If you get a propt to enter a new password, use `dev_dev`. This won't change the WiFi password.
+If you get a prompt to enter a new password, use `dev_dev`. This won't change the WiFi password.
 <!-- In the VS Code web editor, open a new terminal. One team member should change the default password through the command
 `passwd`
 
@@ -75,11 +81,11 @@ Let's test that ROS is already running. For example:
 
 | Command|  |
 |:-------|--|
-| `ros2 node list` | shows all ROS nodes that are currently running |
-| `ros2 topic list` | shows all topics that exist |
-| `ros2 topic echo /topic_name` | displays the messages being sent over `/topic_name` (e.g. `/arm/joint_states`) |
+| `ros2 node list` | shows all ROS nodes that are currently running  (sometimes misses a few, run again)|
+| `ros2 topic list` | shows all topics that exist  (sometimes misses a few, run again if you suspect that)|
+| `ros2 topic echo /topic_name` | displays the messages being sent over `/topic_name` (e.g. `/joint_states`) |
 | <kbd>Ctrl</kbd>+<kbd>c</kbd> | stops the last command |
-| `ros2 service list` | shows all available ROS services |
+| `ros2 service list` | shows all available ROS services  (sometimes misses a few, run again)|
 
 ### 1.5. First robot motions
 Driving is controlled through the topic `/mirte_base_controller/cmd_vel`.
@@ -122,8 +128,10 @@ Not all required software is on the robot yet. Before fixing that, you need to f
 └── 📁 mirte
     └── 📁 mirte_ws
         ├── 📁 build
-        ├── 📁 devel
+        ├── 📁 install
+        ├── 📁 log
         └── 📁 src
+            ├── 📁 ...
             ├── 📁 mirte_navigation
             ├── 📁 mirte_workshop
             ├── 📁 mirte-ros-packages
@@ -135,18 +143,15 @@ Not all required software is on the robot yet. Before fixing that, you need to f
 
 **The packages `mirte_navigation` and `mirte_workshop` don't exist yet**. We need to get them from GitHub, for which we need an internet connection.
 
-### 2.2. Connecting the robot to internet
-Make sure that there is a WiFi network that you have control over. For example, use your phone as a hotspot.
-
-The following command will connect your robot (use the correct SSID and PASSWORD):
-
+### 2.2. Connecting the robot to internet over WiFi
+This step only works for WiFi networks that were already up before the robot booted, for example your android phone hotspot (iPhone seems problematic). If necessary, reboot the robot with
 ```bash
-nmcli device wifi connect "SSID" password "PASSWORD"
+sudo reboot now
 ```
 
-If this does not work, you can change the WiFi using the web interface at http://192.168.42.1, under the "Settings" tab. However, this page only lists the SSIDs that were available when the robot booted, so in the worst case you'll need to first turn on your WiFi network, reboot the robot, and then access this web interface.
+Go to the web interface at http://192.168.42.1 (WiFi) or http://192.168.45.1 (UTP cable), click the "Settings" tab, and enter the WiFi network information.
 
-As soon as the robot is connected to the WiFi network, you will lose the direct connection to it. To get back in touch:
+As soon as the robot is connected to the WiFi network, you will lose the direct WiFi connection to it. To get back in touch:
 - Connect your laptop to the same WiFi network
 - Find the robot's IP address from your phone hotspot
 - Use this IP address in the browser
@@ -164,10 +169,11 @@ git clone --branch ros2_humble <...>
 Replace `<...>` with the https address of the repository. Paste it using a right mouse click, or use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd>.
 
 
-#### 2.3.2 Clone two more repositories
+#### 2.3.2 Clone three more repositories
 Find the following repositories on GitHub and clone these onto the robot as well:   
 [MartijnWisse/mirte_navigation](https://github.com/MartijnWisse/mirte_navigation)   
 [MartijnWisse/mirte_location_markers](https://github.com/MartijnWisse/mirte_location_markers)  
+[MartijnWisse/mirte_location_markers_msgs](https://github.com/MartijnWisse/mirte_location_markers_msgs)
 
 ### 2.4. Compiling new packages
 
@@ -178,6 +184,7 @@ Whenever you git clone a new package onto the robot, it needs to be compiled so 
 cd ~/mirte_ws
 colcon build --symlink-install --packages-select mirte_workshop
 colcon build --symlink-install --packages-select mirte_navigation
+colcon build --symlink-install --packages-select mirte_location_markers_msgs
 colcon build --symlink-install --packages-select mirte_location_markers
 ```
 
@@ -193,7 +200,7 @@ sudo apt install ros-humble-navigation2
 Now, in any new terminal, ROS will know how to find the new folders and files. But not in terminals that already exist. To tell them, in each existing terminal you need to type:
 
 ```bash
-source install/setup.bash
+source ~/mirte_ws/install/setup.bash
 ```
 
 Alternatively, you can close the terminal(s) and open new ones.
