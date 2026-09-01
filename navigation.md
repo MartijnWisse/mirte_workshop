@@ -19,7 +19,7 @@ ros2 run nav2_map_server map_saver_cli -f /home/mirte/mirte_ws/src/mirte_navigat
 
 This command updates the files `default.yaml` and `default.pgm` in the directory `~/mirte_ws/src/mirte_navigation/maps`. Every time you run the command, these files will be overwritten. Open the `default.yaml` file to see that it contains a reference to the `default.pgm` file, so moving files to different folders must be done with care.
 
-Now, close minimal_slam_launch.p with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
+Now, close minimal_slam_launch.py with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
 ## 3. Localizing with a saved map
 With the successfully saved map and successfully installed Navigation stack, we can now run  
@@ -37,7 +37,7 @@ If you wish to use a different map name, use your custom map name in the map_sav
 ```
 
 ## 5. Navigating
-A quick and satisfying way to test navigation is to click "2D Nav Goal" (pink arrow) in RViz. Pay attention to the terminal from which amcl_demo was launched.  
+A quick and satisfying way to test navigation is to click "2D Goal Pose" (one of the green arrows) in RViz. Pay attention to the terminal from which amcl_demo was launched.  
 
 You can also provide a navigation goal through the command line. First carefully check that the goal coordinates are reachable.
 ```bash
@@ -51,7 +51,7 @@ ros2 run mirte_location_markers move_to_server.py
 
 This file will create the rosservice /move_to. Until the 'markers' team member is ready, the only navigation goals available are 'start' and 'test_location'. From a new terminal, the rosservice can be called with:  
 ```bash
-ros2 service call /move_to "location: 'start'"
+ros2 service call /move_to mirte_location_markers_msgs/srv/MoveTo "location: 'test_location'"
 ```   
 
 It is recommended to check the file `move_to_server.py` and ask anything that is unclear to ChatGPT. Simply copy the entire code and ask. It will also assist with unexpected errors.
