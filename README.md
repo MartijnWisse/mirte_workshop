@@ -42,8 +42,8 @@ The side display shows a WiFi network name, `Mirte-XXXXXX`. Connect to it with y
 
 #### 1.2.3 Navigate to the control interface
 Open a browser on your laptop and 
-- for the UTP connection go to the website "http://192.168.45.1:8000"
-- for the WiFi connection go to the website "http://192.168.42.1:8000"
+- for the UTP connection go to the website "http://192.168.45.1/code/"
+- for the WiFi connection go to the website "http://192.168.42.1/code/"
 
 If asked for a login:
 
